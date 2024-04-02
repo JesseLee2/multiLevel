@@ -8,7 +8,7 @@ import random
 from functools import partial
 from hyperopt import hp, fmin, mix, tpe, rand, space_eval, STATUS_OK, STATUS_FAIL
 from hyperopt.mongoexp import MongoTrials, Trials
-from generateTwoStageV200 import *
+from generateTwoStage import *
 
 
 def prettify2(elem):
@@ -995,7 +995,243 @@ def assignMultiStageMuxForImux(segments, imux_froms, imux_mux_fanin, imuxElem):
         
         imux_mux_fanin["second"][k[0]] = fanin
 
+
+def assignNumforeach_gsb(num_foreach, offset):
+    result = [0 for i in range(4)]
+    for k in range(int(num_foreach)):
+        result[(k + offset) % 4] += 1
+    offset = (int(num_foreach) + offset) % 4
+    return result, offset
+
+# assign connection of two stage mux in gsb
+def assignTwoStageMuxForGsb(segs, gsb, to_mux_nums, gsb_mux_fanin, gsbElem, segs_freq, segElems, pin_froms):
+    # segs_freq is the dic whose key is the seg_name and the value is the fraction of each seg to the total seg num
+    ind2dir = ["W", "N", "E", "S"]
+    firstStageMuxFroms = {}
+    SecondStageMuxFroms_firstStage = {}
+    CasStageMUXFroms_firstStage = {}
+    SecondStageMuxFroms_noStage = {}
+    length_reuse_threshold = 6
+    offset_first = 0
+    #offset_second = 0
+    from_type_offset = {}
+    segs_times = {}
+    seg_check = 0
+    min_times = 16
+    min_seg = []
+    a = [0, 1, 2, 3]
+    dir_type_comb = list(permutations(a, 4))
+    # print(dir_type_comb)
+
+    # assign the times that each seg appears 
+    for seg_name in segs_freq.keys():
+        seg_times = int(12 * segs_freq[seg_name])
+        segs_times[seg_name] = seg_times
+        seg_check = seg_check + segs_times[seg_name]
+        if (min_times == seg_times):
+            min_seg.append(seg_name)
+        if (min_times > seg_times):
+            min_times = seg_times
+            min_seg = [seg_name]
+
+    ind = 0
+    while(seg_check != 12):
+        seg_name = min_seg[ind]
+        segs_times[seg_name] = segs_times[seg_name] + 1
+        seg_check = seg_check + 1
+        ind = (ind + 1) % len(min_seg)
+    for to_seg_name, mux_nums in to_mux_nums.items():
+        seg_froms = gsb[to_seg_name]
+
+        to_track_to_first_mux = []
+        for i in range(mux_nums):
+            to_track_to_first_mux.append([])
+        first_mux_assign = True
+        assignNumforeachOffset_first = 0
+        assignNumforeachOffset_second = 0
+
+    seg_froms = gsb['l1']
+
+    # assign the seg drives
+    offset_first = 0
+    is_first = 1
+    for seg in segElems:
+            #seg_from.show()
+        from_index = []
+        from_index = list(range(seg.total_froms))
+
+        # first stage mux
+        assign_from = [0, from_index]
+        if seg.name in from_type_offset:
+            assign_from = [from_type_offset[seg.name], from_index]
+        if 1:
+            seg_from_assign, offset_first = assignNumforeach_gsb(segs_times[seg.name], offset_first)
+            # print(seg_from.name)
+            assign_firstStageMux_from(segs, seg, 8, seg_from_assign, offset_first, assign_from, assignNumforeachOffset_first,
+                                to_track_to_first_mux, firstStageMuxFroms, length_reuse_threshold, first_mux_assign, segs_times)
+            # if type_str == "pb" or type_str == "omux":
+            #     assignNumforeachOffset_first = (assignNumforeachOffset_first + seg_from.num_foreach) % 4
+        else:
+                #print(SecondStageMuxFroms_noStage)
+                #print(assign_from[0])
+            assign_secondStageMux_from(segs, seg, mux_nums, assign_from, assignNumforeachOffset_second,
+                                    to_seg_name, SecondStageMuxFroms_noStage, length_reuse_threshold, first_mux_assign)
+            is_first = 0
+            # if type_str == "pb" or type_str == "omux":
+            #     assignNumforeachOffset_second = (assignNumforeachOffset_second + seg_from.num_foreach) % 4
+            
+
+            #if type_str == "seg":
+        from_type_offset[seg.name] = assign_from[0]
     
+            #print(from_seg_offset)
+    # assign the plb, omux drives
+    assign_from = {}
+    if len(pin_froms) > 0:
+        for pin_from in pin_froms:
+            if pin_from.type == "pb":
+                assign_from[pin_from.pin_types] = 0
+            elif pin_from.type == "omux":
+                assign_from["OG"] = 0
+            elif pin_from.type == "cas":
+                assign_from["GSB_zero"] = 0
+        pin_from = pin_froms[0]
+        if pin_from.reuse:
+            assign_firstStageMux_pin_from(segs, pin_froms, 128, seg_from_assign, offset_first, assign_from, assignNumforeachOffset_first,
+                                to_track_to_first_mux, firstStageMuxFroms, length_reuse_threshold, first_mux_assign, segs_times)
+
+
+
+
+    mux_type_dir = {}
+    type_offset_dir = {}
+    for i in range(128):
+        dir_type = ind2dir[i % 16 // 4]
+        type_ind = i % 4
+        mux_type = dir_type + str(type_ind)
+        if (mux_type) not in mux_type_dir:
+            mux_type_dir[mux_type] = [i]
+            type_offset_dir[mux_type] = 0
+        else:
+            mux_type_dir[mux_type].append(i)
+
+
+        # second stage mux
+    SecondStageMuxFroms_noStage_seg = {}
+    mux_th = 0
+    is_first = 1
+    for to_seg_name, mux_nums in to_mux_nums.items():
+        for i_t in range(mux_nums):
+            for i_dir in range(4):
+                mux_name = ind2dir[i_dir] + "-b" + str(i_t)
+                to_track = ind2dir[i_dir] + str(i_t)
+                second_mux = (mux_name, to_seg_name, to_track)
+                if (i_t > mux_nums * 2 // 3) and (is_first == 1):
+                    drive_for_neighbor = []
+                    from_detail = ""
+                    for j in range(4):
+                        if i_dir != j:
+                            from_detail = from_detail + ' ' + ind2dir[j] + str(i_t)
+                    drive_for_neighbor.append(TwoStageMuxFrom_inf("seg", to_seg_name, from_detail))
+                    from_detail = "OG_1ST_" + str((i_t + i_dir) % 4) + " OG_1ST_" + str((i_t + i_dir) % 4 + 4) + " OG_1ST_" + str((i_t + i_dir) % 4 + 8)
+                    drive_for_neighbor.append(TwoStageMuxFrom_inf("omux", "oxbar", from_detail))
+                    SecondStageMuxFroms_noStage_seg[second_mux] = drive_for_neighbor
+                else:
+                    first_mux = []
+                    dir_type = dir_type_comb[mux_th % 24]
+                    # if (mux_th == 0):
+                    #     print(dir_type[1])
+                    for im_dir in range(4):
+                        mux_type = ind2dir[im_dir] + str(dir_type[im_dir])
+                        # if first_mux:
+                        #     del(first_mux[(i_dir + 2) % 4])
+                        offset = type_offset_dir[mux_type] % len(mux_type_dir[mux_type])
+                        type_offset_dir[mux_type] += 1
+                        first_mux.append('mux_' + str(mux_type_dir[mux_type][offset]))
+                    if (mux_th == 0):
+                        print(first_mux)
+                    mux_th += 1
+                    SecondStageMuxFroms_firstStage[second_mux] = first_mux
+        is_first = 0
+        
+    # generate the cascade mux
+
+    for i in range(8):
+        mux_name = "GSB_zero" + str(i)
+        cas_mux = (mux_name)
+        first_mux = []
+        for i_b in range(4):
+            mux_th = 16 * i + i_b * 4 + (i + i_b) % 4
+            first_mux.append("mux_" + str(mux_th))
+        CasStageMUXFroms_firstStage[mux_name] = first_mux
+
+    #print(SecondStageMuxFroms_noStage)
+    gsb_two_stage = ET.SubElement(gsbElem, "multistage_muxs")
+    first_stage = ET.SubElement(gsb_two_stage, "first_stage")
+    first_stage.set("switch_name", "gsb_medium_mux")
+    second_stage = ET.SubElement(gsb_two_stage, "second_stage")
+    cas_stage = ET.SubElement(gsb_two_stage, "cas_stage")
+    cas_stage.set("switch_name", "gsb_medium_mux")
+
+    # firstStageMuxFroms = sorted(firstStageMuxFroms.items(),
+    #                             key = lambda x: int( re.search(r'mux-(.*)-(.*)', x[0], re.M | re.I).group(1) )
+    #                             )
+    
+    for k, v in firstStageMuxFroms.items():
+        mux_from = ET.SubElement(first_stage, "mux")
+        mux_from.set("name", k)
+        fanin = 0
+        #print("\tmux_name" + k)
+        for vv in v:
+            #vv.show()
+            vv.to_arch(mux_from)
+            fanin += vv.count_detail_nums()
+        gsb_mux_fanin["first"][k] = fanin
+    
+    for k, v in SecondStageMuxFroms_firstStage.items():
+        mux_from = ET.SubElement(second_stage, "mux")
+        mux_from.set("name", k[0])
+        mux_from.set("to_seg_name", k[1])
+        mux_from.set("to_track", k[2])
+
+        fanin = 0
+        fanin_key = k[1] + ":" + k[2]
+
+        if v:
+            a_from = ET.SubElement(mux_from, "from")
+            a_from.set("mux_name", " ".join(v))
+            fanin += len(v)
+
+
+        if k in SecondStageMuxFroms_noStage:
+            v2 = SecondStageMuxFroms_noStage[k]
+            #print(v2)
+            for vv in v2:
+                #vv.show()
+                vv.to_arch(mux_from)
+                fanin += vv.count_detail_nums()
+        gsb_mux_fanin["second"][fanin_key] = (fanin, str(segs[k[1]]))
+
+    for k, v in SecondStageMuxFroms_noStage_seg.items():
+        mux_from = ET.SubElement(second_stage, "mux")
+        mux_from.set("name", k[0])
+        mux_from.set("to_seg_name", k[1])
+        mux_from.set("to_track", k[2])
+
+        if v:
+            for vv in v:
+                vv.to_arch(mux_from)
+
+    for k, v in CasStageMUXFroms_firstStage.items():
+        mux_from = ET.SubElement(cas_stage, "mux")
+        mux_from.set("name", k)
+
+        if v:
+            a_from = ET.SubElement(mux_from, "from")
+            a_from.set("mux_name", " ".join(v))
+            fanin += len(v)
+
+
 
 
 def generateMultiStageMux(archTree, segments):
@@ -1079,7 +1315,7 @@ def generateMultiStageMux(archTree, segments):
 
         gsb[to_seg_name] = seg_froms
         to_mux_nums[to_seg_name] = int(seg_group.get("track_nums"))
-    assignTwoStageMux_gsb_v200(segs, gsb, to_mux_nums, gsb_mux_fanin, gsbElem, segs_numfreq, segElems, pin_froms)
+    assignTwoStageMuxForGsb(segs, gsb, to_mux_nums, gsb_mux_fanin, gsbElem, segs_numfreq, segElems, pin_froms)
     
     return (gsb_mux_fanin, imux_mux_fanin)
 
