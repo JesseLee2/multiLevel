@@ -540,7 +540,7 @@ def assignFirstStageMuxFromSeg(StageMuxFroms, seg, indList, segNum, segTimes,sta
     for i in range(stageGroupNum):
         muxId = muxOffset
 
-        # assign the drives from seg in one glb group
+        # assign the drives from seg in one zero group
         for j in range(segTimes):
 
             
@@ -568,7 +568,7 @@ def assignFirstStageMuxFromSeg(StageMuxFroms, seg, indList, segNum, segTimes,sta
 
     return (muxId, segId)
 
-def assignGLBStageMuxFromSeg(StageMuxFroms, seg, indList, segNum, segTimes,glbGroupNum, glbGroupSize, glbStageSize, muxOffset, dirIdOffset, segIdOffset):
+def assignzeroStageMuxFromSeg(StageMuxFroms, seg, indList, segNum, segTimes,zeroGroupNum, zeroGroupSize, zeroStageSize, muxOffset, dirIdOffset, segIdOffset):
     ind2dir = ["W", "N", "E", "S"]
     type_str = "seg"
     fromName = seg.name  
@@ -577,14 +577,14 @@ def assignGLBStageMuxFromSeg(StageMuxFroms, seg, indList, segNum, segTimes,glbGr
     segId = segIdOffset
     dirId = dirIdOffset
 
-    for i in range(glbGroupNum):
+    for i in range(zeroGroupNum):
         muxId = muxOffset
 
-        # assign the drives from seg in one glb group
+        # assign the drives from seg in one zero group
         for j in range(segTimes):
 
             
-            mux_name = "mux_" + str(muxId + i * glbGroupSize)
+            mux_name = "mux_" + str(muxId + i * zeroGroupSize)
             dir_str = ind2dir[muxId % 4]
 
             # one group contains four muxes, assign by segs_times
@@ -594,7 +594,7 @@ def assignGLBStageMuxFromSeg(StageMuxFroms, seg, indList, segNum, segTimes,glbGr
             dirId = (dirId + 1) % 4
             if (dirId % 4 == 0):
                 segId = (segId + 1) % segNum
-            muxId = (muxId + 1) % glbGroupSize
+            muxId = (muxId + 1) % zeroGroupSize
         
             # if first_mux_assign:
             #     to_track_to_first_mux[i].append(mux_name)
@@ -608,24 +608,24 @@ def assignGLBStageMuxFromSeg(StageMuxFroms, seg, indList, segNum, segTimes,glbGr
 
     return (muxId, segId)
 
-def assignFirstStageFromGLB(firstStageMuxFroms, glbGroupNum, glbGroupSize, firstStageNum):
+def assignFirstStageFromzero(firstStageMuxFroms, zeroGroupNum, zeroGroupSize, firstStageNum):
 
-    glbMuxNum = glbGroupSize * glbGroupNum
+    zeroMuxNum = zeroGroupSize * zeroGroupNum
     muxId = 0
     for i in range(firstStageNum):
         muxName = "mux2nd_" + str(i)
-        # assign the glb drives in one first stage mux
-        for j in range(glbGroupSize):
+        # assign the zero drives in one first stage mux
+        for j in range(zeroGroupSize):
             fromMuxName = 'mux_' + str(muxId)
-            muxId = (muxId + 1) % glbMuxNum
-            typeGlb = "glb"
-            fromName = "glb"
-            glbFrom = TwoStageMuxFrom_inf(
-                typeGlb, fromName, fromMuxName, 0)
+            muxId = (muxId + 1) % zeroMuxNum
+            typezero = "zero"
+            fromName = "zero"
+            zeroFrom = TwoStageMuxFrom_inf(
+                typezero, fromName, fromMuxName, 0)
             if muxName in firstStageMuxFroms:
-                firstStageMuxFroms[muxName].append(glbFrom)
+                firstStageMuxFroms[muxName].append(zeroFrom)
             else:
-                firstStageMuxFroms[muxName] = [glbFrom]  
+                firstStageMuxFroms[muxName] = [zeroFrom]  
             
 
 def assignSecondStageFromFirst(secondStageMuxFroms, secondStageSize, firstStageNum, K, N):
@@ -661,7 +661,7 @@ def assignSecondStageMuxFromSeg(StageMuxFroms, seg, indList, segNum, segTimes, K
     for indLut in range(N):
         indPin = pinOffset
 
-        # assign the drives from seg in one glb group
+        # assign the drives from seg in one zero group
         for j in range(segTimes):
 
             muxId = indLut * K + indPin
@@ -724,7 +724,7 @@ def assignFbToFirstStage(StageMuxFroms, num):
             StageMuxFroms[mux_name] = [stagemuxfrom]  
         indMux += 1
 
-def assignSegThroughThreeStage(segments, GLBStageMuxFroms, firstStageMuxFroms, secondStageMuxFroms, glbGroupNum, glbGroupSize, glbStageSize, firstStageNum, secondStageSize, K, N, mux_fanin, segIdSofar):
+def assignSegThroughThreeStage(segments, zeroStageMuxFroms, firstStageMuxFroms, secondStageMuxFroms, zeroGroupNum, zeroGroupSize, zeroStageSize, firstStageNum, secondStageSize, K, N, mux_fanin, segIdSofar):
 
     # assign the seg that drives CLB through three stages
     segThreeStageNum = {}
@@ -743,12 +743,12 @@ def assignSegThroughThreeStage(segments, GLBStageMuxFroms, firstStageMuxFroms, s
     
     # assign the times that each seg appears 
     segThreeStageTimes = {}
-    minTimes = glbStageSize * glbGroupSize
-    glbGroupConnections = glbGroupSize * glbStageSize
+    minTimes = zeroStageSize * zeroGroupSize
+    zeroGroupConnections = zeroGroupSize * zeroStageSize
     segCheck = 0
     minSeg = []
     for segName in segThreeStageRatio.keys():
-        segTimes = int(glbGroupConnections * segThreeStageRatio[segName])
+        segTimes = int(zeroGroupConnections * segThreeStageRatio[segName])
         segThreeStageTimes[segName] = segTimes
         segCheck = segCheck + segThreeStageTimes[segName]
         if (minTimes == segTimes):
@@ -758,14 +758,14 @@ def assignSegThroughThreeStage(segments, GLBStageMuxFroms, firstStageMuxFroms, s
             minSeg = [segName]
 
     ind = 0
-    while(segCheck != glbGroupConnections):
+    while(segCheck != zeroGroupConnections):
         segName = minSeg[ind]
         segThreeStageTimes[segName] = segThreeStageTimes[segName] + 1
         segCheck = segCheck + 1
         ind = (ind + 1) % len(minSeg)
     print("three stages seg's times appearing in one group:"+ str(segThreeStageTimes))
 
-    # according to segThreeStageTimes assign the seg to glb stage, the from detail info is affected by segThreeStageNum
+    # according to segThreeStageTimes assign the seg to zero stage, the from detail info is affected by segThreeStageNum
 
     muxOffset = 0
     dirIdOffset = 0
@@ -776,9 +776,9 @@ def assignSegThroughThreeStage(segments, GLBStageMuxFroms, firstStageMuxFroms, s
             segTimes = segThreeStageTimes[seg.name]
             indList = [i for i in range(segNum)]
             print(seg.name + ':' + str(indList))
-            (muxOffset, segIdOffset) = assignGLBStageMuxFromSeg(GLBStageMuxFroms, seg, indList, segNum, segTimes, glbGroupNum, glbGroupSize, glbStageSize, muxOffset, dirIdOffset, segIdOffset)
+            (muxOffset, segIdOffset) = assignzeroStageMuxFromSeg(zeroStageMuxFroms, seg, indList, segNum, segTimes, zeroGroupNum, zeroGroupSize, zeroStageSize, muxOffset, dirIdOffset, segIdOffset)
 
-    assignFirstStageFromGLB(firstStageMuxFroms, glbGroupNum, glbGroupSize, firstStageNum)
+    assignFirstStageFromzero(firstStageMuxFroms, zeroGroupNum, zeroGroupSize, firstStageNum)
 
     assignSecondStageFromFirst(secondStageMuxFroms, secondStageSize, firstStageNum, K, N)
 
@@ -804,12 +804,12 @@ def assignSegThroughTwoStage(segments, firstStageMuxFroms, secondStageMuxFroms, 
     firstGroupSize = 4
     segTwoStageTimes = {}
     minTimes = firstStageSize * firstGroupSize
-    glbGroupConnections = firstGroupSize * firstStageSize
+    zeroGroupConnections = firstGroupSize * firstStageSize
     segCheck = 0
     minSeg = []
 
     for segName in segTwoStageRatio.keys():
-        segTimes = int(glbGroupConnections * segTwoStageRatio[segName])
+        segTimes = int(zeroGroupConnections * segTwoStageRatio[segName])
         segTwoStageTimes[segName] = segTimes
         segCheck = segCheck + segTwoStageTimes[segName]
         if (minTimes == segTimes):
@@ -819,7 +819,7 @@ def assignSegThroughTwoStage(segments, firstStageMuxFroms, secondStageMuxFroms, 
             minSeg = [segName]
     
     ind = 0
-    while(segCheck != glbGroupConnections):
+    while(segCheck != zeroGroupConnections):
         segName = minSeg[ind]
         segTwoStageTimes[segName] = segTwoStageTimes[segName] + 1
         segCheck = segCheck + 1
@@ -908,38 +908,41 @@ def assignSegThroughOneStage(segments, secondStageMuxFroms, secondStageSize, K, 
             (pinOffset, segIdOffset) = assignSecondStageMuxFromSeg(secondStageMuxFroms, seg, indList, segNum, segTimes, K, N, pinOffset, segIdOffset)
 
 
-def assignMultiStageMuxForImux(segments, imux_froms, imux_mux_fanin, imuxElem):
+def assignMultiStageMuxForImux(segments, imux_froms, imux_mux_fanin, imuxElem, muxParams):
 
     
     imux_two_stage = ET.SubElement(imuxElem, "multistage_muxs")
     first_stage = ET.SubElement(imux_two_stage, "first_stage")
     first_stage.set("switch_name", "imux_medium_mux")
     second_stage = ET.SubElement(imux_two_stage, "second_stage")
-    glb_stage = ET.SubElement(imux_two_stage, "glb_stage")
-    glb_stage.set("switch_name", "imux_medium_mux")
+    zero_stage = ET.SubElement(imux_two_stage, "zero_stage")
+    zero_stage.set("switch_name", "imux_medium_mux")
 
-    glbStageSize = 6
-    glbGroupSize = 4
-    glbGroupNum = 4
-    glbStageNum = glbGroupNum * glbGroupSize
-    glbConnections = glbStageSize * glbStageNum
+    muxParams = [0,6,40,4,6,16,2]
+    (sOne3rd, sTwo3rd, n2nd, sTwo2nd, s1st, n1st, sThree2nd) = muxParams
 
-    secondStageSize = 6
+    zeroStageSize = s1st
+    zeroGroupSize = int(math.sqrt(n1st))
+    zeroGroupNum = math.ceil(n1st / zeroGroupSize)
+    zeroStageNum = zeroGroupNum * zeroGroupSize
+    zeroConnections = zeroStageSize * zeroStageNum
+
+    secondStageSize = sThree2nd
 
     K = 6
     N = 8
 
-    firstStageNum = 40
+    firstStageNum = n2nd
 
-    GLBStageMuxFroms = {}
+    zeroStageMuxFroms = {}
     firstStageMuxFroms = {}
     secondStageMuxFroms ={}
     segIdSofar = {}
 
-    segIdSofar = assignSegThroughThreeStage(segments, GLBStageMuxFroms, firstStageMuxFroms, secondStageMuxFroms, glbGroupNum, glbGroupSize, glbStageSize, firstStageNum, secondStageSize, K, N, imux_mux_fanin, segIdSofar)
+    segIdSofar = assignSegThroughThreeStage(segments, zeroStageMuxFroms, firstStageMuxFroms, secondStageMuxFroms, zeroGroupNum, zeroGroupSize, zeroStageSize, firstStageNum, secondStageSize, K, N, imux_mux_fanin, segIdSofar)
     print("segIdSofar " + str(segIdSofar))
 
-    firstStageSize = 4
+    firstStageSize = sTwo2nd
     segIdSofar = assignSegThroughTwoStage(segments, firstStageMuxFroms, secondStageMuxFroms, firstStageSize, firstStageNum, secondStageSize, K, N, imux_mux_fanin, segIdSofar)
     print("segIdSofar " + str(segIdSofar))
 
@@ -949,8 +952,8 @@ def assignMultiStageMuxForImux(segments, imux_froms, imux_mux_fanin, imuxElem):
 
     
 
-    for k, v in GLBStageMuxFroms.items():
-        mux_from = ET.SubElement(glb_stage, "mux")
+    for k, v in zeroStageMuxFroms.items():
+        mux_from = ET.SubElement(zero_stage, "mux")
         mux_from.set("name", k)
         fanin = 0
         #print("\tmux_name" + k)
@@ -958,7 +961,7 @@ def assignMultiStageMuxForImux(segments, imux_froms, imux_mux_fanin, imuxElem):
             #vv.show()
             vv.to_arch(mux_from)
             fanin += vv.count_detail_nums()
-        imux_mux_fanin["glb"][k] = fanin
+        imux_mux_fanin["zero"][k] = fanin
 
     for k, v in firstStageMuxFroms.items():
         mux_from = ET.SubElement(first_stage, "mux")
@@ -1251,7 +1254,7 @@ def generateMultiStageMux(archTree, segments):
     imux_mux_fanin ={}
     imux_mux_fanin["first"] = {}
     imux_mux_fanin["second"] = {}
-    imux_mux_fanin["glb"] = {}
+    imux_mux_fanin["zero"] = {}
     
     gsb_mux_fanin = {}
     gsb_mux_fanin["first"] = {}
@@ -1319,6 +1322,93 @@ def generateMultiStageMux(archTree, segments):
     
     return (gsb_mux_fanin, imux_mux_fanin)
 
+
+def generateMultiStageMuxV2(archTree, segments, muxParams):
+    
+    gsb_arch = archTree["root"].getroot().find("gsb_arch")
+
+    gsbElem = gsb_arch.find("gsb")
+    imuxElem = gsb_arch.find("imux")
+    segsElem = archTree["root"].getroot().find("segmentlist")
+    
+    if imuxElem.find("multistage_muxs") != None:
+        imuxElem.remove(imuxElem.find("multistage_muxs"))
+    if gsbElem.find("multistage_muxs") != None:
+        gsbElem.remove(gsbElem.find("multistage_muxs"))
+    
+    imuxParams = muxParams[0]
+    gsbParams = muxParams[1]
+    imux = {}
+    imux_mux_fanin ={}
+    imux_mux_fanin["first"] = {}
+    imux_mux_fanin["second"] = {}
+    imux_mux_fanin["zero"] = {}
+    
+    gsb_mux_fanin = {}
+    gsb_mux_fanin["first"] = {}
+    gsb_mux_fanin["second"] = {}
+
+    for lut_group in imuxElem:
+        lut_name = lut_group.get("name")
+        imux_froms = []
+        for fromElem in lut_group:
+            imux_froms.append(From_inf(fromElem))
+        imux[lut_name] = imux_froms
+    if len(imux) > 1:
+        raise ArchError("too many lut_group in imux, only one lut_group is ok")
+    assignMultiStageMuxForImux(segments, imux_froms, imux_mux_fanin, imuxElem, imuxParams)
+    
+    gsb = {}
+    to_mux_nums = {}
+    gsb_mux_fanin = {}
+    gsb_mux_fanin["first"] = {}
+    gsb_mux_fanin["second"] = {}
+
+    segs = {}
+    segs_numfreq = {}
+    segElems = []
+    seg_num = 0
+
+    for seg in segsElem:
+        seg_info = Seg_inf(seg)
+        if (seg.get('name')[0] == 'l'):
+            seg_name = seg.get("name")
+            seg_length = int(seg.get("length"))
+            segs[seg_name] = seg_length
+            segs_numfreq[seg_name] = int(float(seg.get("freq")) / 2 / seg_length)
+            seg_info.total_froms = int(float(seg.get("freq")) / 2 / seg_length)
+            # print(str(seg_name) + ' ' + str(seg_info.total_froms))
+            seg_num = seg_num + segs_numfreq[seg_name]
+            segElems.append(seg_info) 
+        # print(seg_info.total_from)
+    for seg_name in segs_numfreq.keys():
+        segs_numfreq[seg_name] = segs_numfreq[seg_name] / seg_num
+    pin_froms = []
+    for seg_group in gsbElem.findall('seg_group'):
+        to_seg_name = seg_group.get("name")
+        if (to_seg_name == "l1"):
+            print('enter gsb l1 group')
+            for fromElem in seg_group.findall('from'):
+                if fromElem.get("type") != "seg":
+                    if fromElem.get("type") == "pb":
+                        # divide the pb from description into seperate From_inf acccording to its pin_types
+                        # from_details = fromElem.get("pin_types").split()
+                        from_details = ['o', 'q']
+                        for pin_type in from_details:
+                            pin_from = From_inf(fromElem)
+                            pin_from.pin_types = pin_type
+                            pin_froms.append(pin_from)
+                    else:
+                        pin_froms.append(From_inf(fromElem))
+        seg_froms = []
+        for fromElem in seg_group:
+            seg_froms.append(From_inf(fromElem))
+
+        gsb[to_seg_name] = seg_froms
+        to_mux_nums[to_seg_name] = int(seg_group.get("track_nums"))
+    assignTwoStageMuxForGsb(segs, gsb, to_mux_nums, gsb_mux_fanin, gsbElem, segs_numfreq, segElems, pin_froms, gsbParams)
+    
+    return (gsb_mux_fanin, imux_mux_fanin)
 
 def objectiveTest(variables, space, archTree):
     segments, relations, chanWidth, typeToNum = genArch(variables)
