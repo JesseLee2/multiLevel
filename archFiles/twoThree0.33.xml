@@ -1,0 +1,3506 @@
+<?xml version="1.0" encoding="utf-8"?>
+<architecture>
+	<models>
+		<model name="mux">
+			<input_ports>
+				<port name="a" combinational_sink_ports="out"/>
+				<port name="b" combinational_sink_ports="out"/>
+				<port name="sel"/>
+			</input_ports>
+			<output_ports>
+				<port name="out"/>
+			</output_ports>
+		</model>
+		<model name="multiply">
+			<input_ports>
+				<port name="a" combinational_sink_ports="out"/>
+				<port name="b" combinational_sink_ports="out"/>
+			</input_ports>
+			<output_ports>
+				<port name="out"/>
+			</output_ports>
+		</model>
+		<model name="single_port_ram">
+			<input_ports>
+				<port name="we" clock="clk"/>
+				<port name="addr" clock="clk"/>
+				<port name="data" clock="clk"/>
+				<port name="clk" is_clock="1"/>
+			</input_ports>
+			<output_ports>
+				<port name="out" clock="clk"/>
+			</output_ports>
+		</model>
+		<model name="dual_port_ram">
+			<input_ports>
+				<port name="we1" clock="clk"/>
+				<port name="we2" clock="clk"/>
+				<port name="addr1" clock="clk"/>
+				<port name="addr2" clock="clk"/>
+				<port name="data1" clock="clk"/>
+				<port name="data2" clock="clk"/>
+				<port name="clk" is_clock="1"/>
+			</input_ports>
+			<output_ports>
+				<port name="out1" clock="clk"/>
+				<port name="out2" clock="clk"/>
+			</output_ports>
+		</model>
+	</models>
+	<layout>
+		<auto_layout aspect_ratio="1.0">
+			<perimeter type="EMPTY" priority="100"/>
+			<fill type="plb" priority="10"/>
+			<col type="io" startx="1" starty="0" priority="30"/>
+			<col type="io" startx="W-2" starty="0" priority="30"/>
+			<row type="io" starty="1" startx="0" priority="30"/>
+			<row type="io" starty="H-2" startx="0" priority="30"/>
+			<single type="io" x="1" y="1" priority="31"/>
+			<single type="io" x="1" y="H-2" priority="31"/>
+			<single type="io" x="W-2" y="1" priority="31"/>
+			<single type="io" x="W-2" y="H-2" priority="31"/>
+			<col type="mult_36" startx="6" starty="2" repeatx="49" priority="20"/>
+			<col type="mult_36" startx="13" starty="2" repeatx="49" priority="20"/>
+			<col type="mult_36" startx="19" starty="2" repeatx="49" priority="20"/>
+			<col type="mult_36" startx="24" starty="2" repeatx="49" priority="20"/>
+			<col type="mult_36" startx="27" starty="2" repeatx="49" priority="20"/>
+			<col type="mult_36" startx="33" starty="2" repeatx="49" priority="20"/>
+			<col type="mult_36" startx="39" starty="2" repeatx="49" priority="20"/>
+			<col type="mult_36" startx="46" starty="2" repeatx="49" priority="20"/>
+			<col type="memory" startx="9" starty="2" repeatx="49" priority="20"/>
+			<col type="memory" startx="16" starty="2" repeatx="49" priority="20"/>
+			<col type="memory" startx="36" starty="2" repeatx="49" priority="20"/>
+			<col type="memory" startx="43" starty="2" repeatx="49" priority="20"/>
+		</auto_layout>
+	</layout>
+	<device>
+		<sizing R_minW_nmos="8926" R_minW_pmos="16067"/>
+		<area grid_logic_tile_area="0"/>
+		<chan_width_distr>
+			<x distr="uniform" peak="1.000000"/>
+			<y distr="uniform" peak="1.000000"/>
+		</chan_width_distr>
+		<switch_block type="wilton" fs="3"/>
+		<connection_block input_switch_name="ipin_cblock"/>
+	</device>
+	<switchlist>
+		<switch type="mux" name="ipin_cblock" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" Tdel="1.881e-11" mux_trans_size="1.9913025792" buf_size="9.33883752939469"/>
+		<switch type="mux" name="1" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="4" delay="3.56e-11"/>
+			<Tdel num_inputs="6" delay="3.89e-11"/>
+		</switch>
+		<switch type="mux" name="2" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="2.16e-11"/>
+			<Tdel num_inputs="4" delay="4.22e-11"/>
+		</switch>
+		<switch type="mux" name="3" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="2.16e-11"/>
+			<Tdel num_inputs="4" delay="4.47e-11"/>
+		</switch>
+		<switch type="mux" name="4" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="4" delay="5.16e-11"/>
+			<Tdel num_inputs="6" delay="5.6e-11"/>
+			<Tdel num_inputs="11" delay="6.23e-11"/>
+		</switch>
+		<switch type="mux" name="5" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="5.57e-11"/>
+			<Tdel num_inputs="4" delay="5.79e-11"/>
+		</switch>
+		<switch type="mux" name="6" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="6.34e-11"/>
+			<Tdel num_inputs="4" delay="6.66e-11"/>
+		</switch>
+		<switch type="mux" name="7" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="6.8e-11"/>
+			<Tdel num_inputs="4" delay="7e-11"/>
+		</switch>
+		<switch type="mux" name="8" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="7.04e-11"/>
+			<Tdel num_inputs="4" delay="7.5e-11"/>
+		</switch>
+		<switch type="mux" name="9" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="7.8e-11"/>
+			<Tdel num_inputs="4" delay="8.00e-11"/>
+		</switch>
+		<switch type="mux" name="10" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="8.34e-11"/>
+			<Tdel num_inputs="4" delay="8.50e-11"/>
+		</switch>
+		<switch type="mux" name="11" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="8.8e-11"/>
+			<Tdel num_inputs="4" delay="9.0e-11"/>
+		</switch>
+		<switch type="mux" name="12" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="20.9624981944">
+			<Tdel num_inputs="3" delay="9.23e-11"/>
+			<Tdel num_inputs="4" delay="9.5e-11"/>
+		</switch>
+		<switch type="mux" name="omux_medium_mux" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="11.881854275546617">
+			<Tdel num_inputs="4" delay="3.35e-11"/>
+			<Tdel num_inputs="12" delay="5.0e-11"/>
+		</switch>
+		<switch type="mux" name="imux_medium_mux" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="10.032299602117465">
+			<Tdel num_inputs="4" delay="3.46e-11"/>
+			<Tdel num_inputs="6" delay="4.17e-11"/>
+			<Tdel num_inputs="7" delay="4.46e-11"/>
+		</switch>
+		<switch type="mux" name="gsb_medium_mux" R="0.000000" Cin="0.000000e+00" Cout="0.000000e+00" mux_trans_size="1.741" buf_size="10.665577570105631">
+			<Tdel num_inputs="2" delay="3.000e-11"/>
+			<Tdel num_inputs="4" delay="3.82e-11"/>
+		</switch>
+	</switchlist>
+	<segmentlist>
+		<segment name="l4" freq="2.000000" length="4" type="unidir" Rmetal="0.000000" Cmetal="0.000000e+00">
+			<mux name="4"/>
+			<sb type="pattern">1 1 1 1 1</sb>
+			<cb type="pattern">1 1 1 1</cb>
+		</segment>
+		<segment name="imux_medium" freq="0.000000" length="1" type="unidir" Rmetal="0" Cmetal="0">
+			<mux name="imux_medium_mux"/>
+			<sb type="pattern">1 1</sb>
+			<cb type="pattern">1</cb>
+		</segment>
+		<segment name="omux_medium" freq="0.000000" length="1" type="unidir" Rmetal="0" Cmetal="0">
+			<mux name="omux_medium_mux"/>
+			<sb type="pattern">1 1</sb>
+			<cb type="pattern">1</cb>
+		</segment>
+		<segment name="gsb_medium" freq="0.000000" length="1" type="unidir" Rmetal="0" Cmetal="0">
+			<mux name="gsb_medium_mux"/>
+			<sb type="pattern">1 1</sb>
+			<cb type="pattern">1</cb>
+		</segment>
+	</segmentlist>
+	<gsb_arch pbtype_name="plb">
+		<omux name="oxbar" pbtype_name="plb memory io mult_36" mux_nums="16" arch_omux_switch="omux_medium_mux">
+			<from total_froms="24" num_foreach="12" offset="12"/>
+			<multistage_muxs>
+				<first_stage switch_name="omux_medium_mux">
+					<mux name="OG_1ST_0">
+						<from type="pb" name="plb" from_detail="mux_o:1"/>
+						<from type="pb" name="plb" from_detail="o:0"/>
+						<from type="pb" name="plb" from_detail="q:0"/>
+						<from type="pb" name="plb" from_detail="q:1"/>
+					</mux>
+					<mux name="OG_1ST_1">
+						<from type="pb" name="plb" from_detail="mux_o:1"/>
+						<from type="pb" name="plb" from_detail="o:0"/>
+						<from type="pb" name="plb" from_detail="o:1"/>
+						<from type="pb" name="plb" from_detail="q:0"/>
+					</mux>
+					<mux name="OG_1ST_2">
+						<from type="pb" name="plb" from_detail="mux_o:0"/>
+						<from type="pb" name="plb" from_detail="o:0"/>
+						<from type="pb" name="plb" from_detail="o:1"/>
+						<from type="pb" name="plb" from_detail="q:1"/>
+					</mux>
+					<mux name="OG_1ST_3">
+						<from type="pb" name="plb" from_detail="mux_o:0"/>
+						<from type="pb" name="plb" from_detail="o:1"/>
+						<from type="pb" name="plb" from_detail="q:0"/>
+						<from type="pb" name="plb" from_detail="q:1"/>
+					</mux>
+					<mux name="OG_1ST_4">
+						<from type="pb" name="plb" from_detail="mux_o:3"/>
+						<from type="pb" name="plb" from_detail="o:2"/>
+						<from type="pb" name="plb" from_detail="q:2"/>
+						<from type="pb" name="plb" from_detail="q:3"/>
+					</mux>
+					<mux name="OG_1ST_5">
+						<from type="pb" name="plb" from_detail="mux_o:3"/>
+						<from type="pb" name="plb" from_detail="o:2"/>
+						<from type="pb" name="plb" from_detail="o:3"/>
+						<from type="pb" name="plb" from_detail="q:2"/>
+					</mux>
+					<mux name="OG_1ST_6">
+						<from type="pb" name="plb" from_detail="mux_o:2"/>
+						<from type="pb" name="plb" from_detail="o:2"/>
+						<from type="pb" name="plb" from_detail="o:3"/>
+						<from type="pb" name="plb" from_detail="q:3"/>
+					</mux>
+					<mux name="OG_1ST_7">
+						<from type="pb" name="plb" from_detail="mux_o:2"/>
+						<from type="pb" name="plb" from_detail="o:3"/>
+						<from type="pb" name="plb" from_detail="q:2"/>
+						<from type="pb" name="plb" from_detail="q:3"/>
+					</mux>
+					<mux name="OG_1ST_8">
+						<from type="pb" name="plb" from_detail="mux_o:5"/>
+						<from type="pb" name="plb" from_detail="o:4"/>
+						<from type="pb" name="plb" from_detail="q:4"/>
+						<from type="pb" name="plb" from_detail="q:5"/>
+					</mux>
+					<mux name="OG_1ST_9">
+						<from type="pb" name="plb" from_detail="mux_o:5"/>
+						<from type="pb" name="plb" from_detail="o:4"/>
+						<from type="pb" name="plb" from_detail="o:5"/>
+						<from type="pb" name="plb" from_detail="q:4"/>
+					</mux>
+					<mux name="OG_1ST_10">
+						<from type="pb" name="plb" from_detail="mux_o:4"/>
+						<from type="pb" name="plb" from_detail="o:4"/>
+						<from type="pb" name="plb" from_detail="o:5"/>
+						<from type="pb" name="plb" from_detail="q:5"/>
+					</mux>
+					<mux name="OG_1ST_11">
+						<from type="pb" name="plb" from_detail="mux_o:4"/>
+						<from type="pb" name="plb" from_detail="o:5"/>
+						<from type="pb" name="plb" from_detail="q:4"/>
+						<from type="pb" name="plb" from_detail="q:5"/>
+					</mux>
+					<mux name="OG_1ST_12">
+						<from type="pb" name="plb" from_detail="mux_o:7"/>
+						<from type="pb" name="plb" from_detail="o:6"/>
+						<from type="pb" name="plb" from_detail="q:6"/>
+						<from type="pb" name="plb" from_detail="q:7"/>
+					</mux>
+					<mux name="OG_1ST_13">
+						<from type="pb" name="plb" from_detail="mux_o:7"/>
+						<from type="pb" name="plb" from_detail="o:6"/>
+						<from type="pb" name="plb" from_detail="o:7"/>
+						<from type="pb" name="plb" from_detail="q:6"/>
+					</mux>
+					<mux name="OG_1ST_14">
+						<from type="pb" name="plb" from_detail="mux_o:6"/>
+						<from type="pb" name="plb" from_detail="o:6"/>
+						<from type="pb" name="plb" from_detail="o:7"/>
+						<from type="pb" name="plb" from_detail="q:7"/>
+					</mux>
+					<mux name="OG_1ST_15">
+						<from type="pb" name="plb" from_detail="mux_o:6"/>
+						<from type="pb" name="plb" from_detail="o:7"/>
+						<from type="pb" name="plb" from_detail="q:6"/>
+						<from type="pb" name="plb" from_detail="q:7"/>
+					</mux>
+				</first_stage>
+				<second_stage switch_name="only_mux">
+					<mux name="0">
+						<from mux_name="OG_1ST_0 OG_1ST_4 OG_1ST_10 OG_1ST_14"/>
+					</mux>
+					<mux name="1">
+						<from mux_name="OG_1ST_1 OG_1ST_5 OG_1ST_11 OG_1ST_15"/>
+					</mux>
+					<mux name="2">
+						<from mux_name="OG_1ST_1 OG_1ST_5 OG_1ST_11 OG_1ST_15"/>
+					</mux>
+					<mux name="3">
+						<from mux_name="OG_1ST_0 OG_1ST_4 OG_1ST_10 OG_1ST_14"/>
+					</mux>
+					<mux name="4">
+						<from mux_name="OG_1ST_2 OG_1ST_6 OG_1ST_8 OG_1ST_12"/>
+					</mux>
+					<mux name="5">
+						<from mux_name="OG_1ST_3 OG_1ST_7 OG_1ST_9 OG_1ST_13"/>
+					</mux>
+					<mux name="6">
+						<from mux_name="OG_1ST_3 OG_1ST_7 OG_1ST_9 OG_1ST_13"/>
+					</mux>
+					<mux name="7">
+						<from mux_name="OG_1ST_2 OG_1ST_6 OG_1ST_8 OG_1ST_12"/>
+					</mux>
+				</second_stage>
+			</multistage_muxs>
+		</omux>
+		<imux arch_imux_switch="imux_medium_mux" lut_group="1" name="ixbar" pbtype_name="plb memory io mult_36">
+			<group mux_nums="8" name="Ia Ic Ie Ig">
+				<from name="l1" num_foreach="2" total_froms="8" type="seg"/>
+				<from name="plb" num_foreach="2" pin_types="Ia Ib Ic Id Ie If Ig Ih" reuse="0" total_froms="48" type="imux"/>
+			</group>
+			<multistage_muxs>
+				<glb_stage switch_name="imux_medium_mux">
+					<mux name="IG_1ST_0">
+						<from type="seg" name="l4" from_detail="W0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="0"/>
+					</mux>
+					<mux name="IG_1ST_1">
+						<from type="seg" name="l4" from_detail="E0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_2">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N3" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_3">
+						<from type="seg" name="l4" from_detail="S0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S3" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_4">
+						<from type="seg" name="l4" from_detail="W4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_5">
+						<from type="seg" name="l4" from_detail="E4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_6">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N7" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_7">
+						<from type="seg" name="l4" from_detail="S4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S7" switchpoint="0"/>
+					</mux>
+					<mux name="IG_1ST_8">
+						<from type="seg" name="l4" from_detail="W8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_9">
+						<from type="seg" name="l4" from_detail="E8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_10">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N11" switchpoint="0"/>
+					</mux>
+					<mux name="IG_1ST_11">
+						<from type="seg" name="l4" from_detail="S8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S11" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_12">
+						<from type="seg" name="l4" from_detail="W12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_13">
+						<from type="seg" name="l4" from_detail="E12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="0"/>
+					</mux>
+					<mux name="IG_1ST_14">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N15" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_15">
+						<from type="seg" name="l4" from_detail="S12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S15" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_16">
+						<from type="seg" name="l4" from_detail="W16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="0"/>
+					</mux>
+					<mux name="IG_1ST_17">
+						<from type="seg" name="l4" from_detail="E16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_18">
+						<from type="seg" name="l4" from_detail="N16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N19" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_19">
+						<from type="seg" name="l4" from_detail="S16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S19" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_20">
+						<from type="seg" name="l4" from_detail="W0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_21">
+						<from type="seg" name="l4" from_detail="E0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_22">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N3" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_23">
+						<from type="seg" name="l4" from_detail="S0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S3" switchpoint="0"/>
+					</mux>
+					<mux name="IG_1ST_24">
+						<from type="seg" name="l4" from_detail="W4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_25">
+						<from type="seg" name="l4" from_detail="E4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_26">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N7" switchpoint="0"/>
+					</mux>
+					<mux name="IG_1ST_27">
+						<from type="seg" name="l4" from_detail="S4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S7" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_28">
+						<from type="seg" name="l4" from_detail="W8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_29">
+						<from type="seg" name="l4" from_detail="E8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="0"/>
+					</mux>
+					<mux name="IG_1ST_30">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N11" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_31">
+						<from type="seg" name="l4" from_detail="S8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S11" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_32">
+						<from type="seg" name="l4" from_detail="W12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="0"/>
+					</mux>
+					<mux name="IG_1ST_33">
+						<from type="seg" name="l4" from_detail="E12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_34">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N15" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_35">
+						<from type="seg" name="l4" from_detail="S12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S15" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_36">
+						<from type="seg" name="l4" from_detail="W16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="1"/>
+					</mux>
+					<mux name="IG_1ST_37">
+						<from type="seg" name="l4" from_detail="E16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="2"/>
+					</mux>
+					<mux name="IG_1ST_38">
+						<from type="seg" name="l4" from_detail="N16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N19" switchpoint="3"/>
+					</mux>
+					<mux name="IG_1ST_39">
+						<from type="seg" name="l4" from_detail="S16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S19" switchpoint="0"/>
+					</mux>
+				</glb_stage>
+				<first_stage switch_name="imux_medium_mux">
+					<mux name="IG_2ND_0">
+						<from type="glb" name="glb" from_detail="IG_1ST_4" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_8" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_12" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_16" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_1">
+						<from type="glb" name="glb" from_detail="IG_1ST_5" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_9" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_13" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_17" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_2">
+						<from type="glb" name="glb" from_detail="IG_1ST_6" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_10" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_14" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_18" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_3">
+						<from type="glb" name="glb" from_detail="IG_1ST_7" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_11" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_15" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_19" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_4">
+						<from type="glb" name="glb" from_detail="IG_1ST_20" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_24" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_28" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_32" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_5">
+						<from type="glb" name="glb" from_detail="IG_1ST_21" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_25" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_29" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_33" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_6">
+						<from type="glb" name="glb" from_detail="IG_1ST_22" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_26" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_30" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_34" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_7">
+						<from type="glb" name="glb" from_detail="IG_1ST_23" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_27" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_31" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_35" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_8">
+						<from type="glb" name="glb" from_detail="IG_1ST_36" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_0" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_4" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_8" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_9">
+						<from type="glb" name="glb" from_detail="IG_1ST_37" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_1" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_5" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_9" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_10">
+						<from type="glb" name="glb" from_detail="IG_1ST_38" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_2" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_6" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_10" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_11">
+						<from type="glb" name="glb" from_detail="IG_1ST_39" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_3" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_7" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_11" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_12">
+						<from type="glb" name="glb" from_detail="IG_1ST_12" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_16" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_20" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_24" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_13">
+						<from type="glb" name="glb" from_detail="IG_1ST_13" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_17" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_21" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_25" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_14">
+						<from type="glb" name="glb" from_detail="IG_1ST_14" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_18" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_22" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_26" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_15">
+						<from type="glb" name="glb" from_detail="IG_1ST_15" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_19" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_23" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_27" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_16">
+						<from type="glb" name="glb" from_detail="IG_1ST_28" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_32" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_36" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_0" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_17">
+						<from type="glb" name="glb" from_detail="IG_1ST_29" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_33" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_37" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_1" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_18">
+						<from type="glb" name="glb" from_detail="IG_1ST_30" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_34" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_38" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_2" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_19">
+						<from type="glb" name="glb" from_detail="IG_1ST_31" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_35" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_39" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_3" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_20">
+						<from type="glb" name="glb" from_detail="IG_1ST_4" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_8" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_12" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_16" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_21">
+						<from type="glb" name="glb" from_detail="IG_1ST_5" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_9" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_13" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_17" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_22">
+						<from type="glb" name="glb" from_detail="IG_1ST_6" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_10" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_14" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_18" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_23">
+						<from type="glb" name="glb" from_detail="IG_1ST_7" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_11" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_15" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_19" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_24">
+						<from type="glb" name="glb" from_detail="IG_1ST_20" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_24" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_28" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_32" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_25">
+						<from type="glb" name="glb" from_detail="IG_1ST_21" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_25" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_29" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_33" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_26">
+						<from type="glb" name="glb" from_detail="IG_1ST_22" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_26" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_30" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_34" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_27">
+						<from type="glb" name="glb" from_detail="IG_1ST_23" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_27" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_31" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_35" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_28">
+						<from type="glb" name="glb" from_detail="IG_1ST_36" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_0" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_4" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_8" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_29">
+						<from type="glb" name="glb" from_detail="IG_1ST_37" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_1" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_5" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_9" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_30">
+						<from type="glb" name="glb" from_detail="IG_1ST_38" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_2" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_6" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_10" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_31">
+						<from type="glb" name="glb" from_detail="IG_1ST_39" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_3" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_7" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_11" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_32">
+						<from type="glb" name="glb" from_detail="IG_1ST_12" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_16" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_20" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_24" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_33">
+						<from type="glb" name="glb" from_detail="IG_1ST_13" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_17" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_21" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_25" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_34">
+						<from type="glb" name="glb" from_detail="IG_1ST_14" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_18" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_22" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_26" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_35">
+						<from type="glb" name="glb" from_detail="IG_1ST_15" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_19" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_23" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_27" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_36">
+						<from type="glb" name="glb" from_detail="IG_1ST_28" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_32" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_36" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_0" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_37">
+						<from type="glb" name="glb" from_detail="IG_1ST_29" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_33" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_37" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_1" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_38">
+						<from type="glb" name="glb" from_detail="IG_1ST_30" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_34" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_38" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_2" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_39">
+						<from type="glb" name="glb" from_detail="IG_1ST_31" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_35" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_39" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_3" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_40">
+						<from type="glb" name="glb" from_detail="IG_1ST_4" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_8" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_12" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_16" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_41">
+						<from type="glb" name="glb" from_detail="IG_1ST_5" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_9" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_13" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_17" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_42">
+						<from type="glb" name="glb" from_detail="IG_1ST_6" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_10" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_14" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_18" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_43">
+						<from type="glb" name="glb" from_detail="IG_1ST_7" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_11" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_15" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_19" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_44">
+						<from type="glb" name="glb" from_detail="IG_1ST_20" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_24" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_28" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_32" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_45">
+						<from type="glb" name="glb" from_detail="IG_1ST_21" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_25" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_29" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_33" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_46">
+						<from type="glb" name="glb" from_detail="IG_1ST_22" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_26" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_30" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_34" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_47">
+						<from type="glb" name="glb" from_detail="IG_1ST_23" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_27" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_31" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_35" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_48">
+						<from type="glb" name="glb" from_detail="IG_1ST_36" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_0" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_4" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_8" switchpoint="0"/>
+					</mux>
+					<mux name="IG_2ND_49">
+						<from type="glb" name="glb" from_detail="IG_1ST_37" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_1" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_5" switchpoint="0"/>
+						<from type="glb" name="glb" from_detail="IG_1ST_9" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_50">
+						<from type="seg" name="l4" from_detail="W9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_51">
+						<from type="seg" name="l4" from_detail="N6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_52">
+						<from type="seg" name="l4" from_detail="W3" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_53">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S8" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_54">
+						<from type="seg" name="l4" from_detail="W17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_55">
+						<from type="seg" name="l4" from_detail="N14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_56">
+						<from type="seg" name="l4" from_detail="W11" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_57">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S16" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_58">
+						<from type="seg" name="l4" from_detail="W5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_59">
+						<from type="seg" name="l4" from_detail="N2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_60">
+						<from type="seg" name="l4" from_detail="W19" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_61">
+						<from type="seg" name="l4" from_detail="N16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S4" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_62">
+						<from type="seg" name="l4" from_detail="W13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_63">
+						<from type="seg" name="l4" from_detail="N10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_64">
+						<from type="seg" name="l4" from_detail="W7" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_65">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S12" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_66">
+						<from type="seg" name="l4" from_detail="W1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_67">
+						<from type="seg" name="l4" from_detail="N18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:4" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_68">
+						<from type="seg" name="l4" from_detail="W15" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_69">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S0" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:4" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_70">
+						<from type="seg" name="l4" from_detail="W9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_71">
+						<from type="seg" name="l4" from_detail="N6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:5" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_72">
+						<from type="seg" name="l4" from_detail="W3" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_73">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S8" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:5" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_74">
+						<from type="seg" name="l4" from_detail="W17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_75">
+						<from type="seg" name="l4" from_detail="N14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:6" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_76">
+						<from type="seg" name="l4" from_detail="W11" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:6" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_77">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S16" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:6" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_78">
+						<from type="seg" name="l4" from_detail="W5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_79">
+						<from type="seg" name="l4" from_detail="N2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:7" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_80">
+						<from type="seg" name="l4" from_detail="W19" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:7" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_81">
+						<from type="seg" name="l4" from_detail="N16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S4" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:7" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_82">
+						<from type="seg" name="l4" from_detail="W13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_83">
+						<from type="seg" name="l4" from_detail="N10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_84">
+						<from type="seg" name="l4" from_detail="W7" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_85">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S12" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_86">
+						<from type="seg" name="l4" from_detail="W1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_87">
+						<from type="seg" name="l4" from_detail="N18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_88">
+						<from type="seg" name="l4" from_detail="W15" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_89">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S0" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_90">
+						<from type="seg" name="l4" from_detail="W9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_91">
+						<from type="seg" name="l4" from_detail="N6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_92">
+						<from type="seg" name="l4" from_detail="W3" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_93">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S8" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_94">
+						<from type="seg" name="l4" from_detail="W17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_95">
+						<from type="seg" name="l4" from_detail="N14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_96">
+						<from type="seg" name="l4" from_detail="W11" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_97">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S16" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_98">
+						<from type="seg" name="l4" from_detail="W5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="IG2_1ST_99">
+						<from type="seg" name="l4" from_detail="N2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:4" switchpoint="0"/>
+					</mux>
+				</first_stage>
+				<second_stage switch_name="imux_medium_mux">
+					<mux name="IG_3RD_0" to_pin="Ia:0">
+						<from mux_name="IG_2ND_0 IG_2ND_1 IG_2ND_2 IG_2ND_3 IG_2ND_4 IG_2ND_5 IG_2ND_6 IG_2ND_7"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+						<from mux_name="IG2_1ST_50 IG2_1ST_51 IG2_1ST_52 IG2_1ST_53"/>
+					</mux>
+					<mux name="IG_3RD_1" to_pin="Ia:1">
+						<from mux_name="IG_2ND_8 IG_2ND_9 IG_2ND_10 IG_2ND_11 IG_2ND_12 IG_2ND_13 IG_2ND_14 IG_2ND_15"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+						<from mux_name="IG2_1ST_54 IG2_1ST_55 IG2_1ST_56 IG2_1ST_57"/>
+					</mux>
+					<mux name="IG_3RD_2" to_pin="Ia:2">
+						<from mux_name="IG_2ND_16 IG_2ND_17 IG_2ND_18 IG_2ND_19 IG_2ND_20 IG_2ND_21 IG_2ND_22 IG_2ND_23"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+						<from mux_name="IG2_1ST_58 IG2_1ST_59 IG2_1ST_60 IG2_1ST_61"/>
+					</mux>
+					<mux name="IG_3RD_3" to_pin="Ia:3">
+						<from mux_name="IG_2ND_24 IG_2ND_25 IG_2ND_26 IG_2ND_27 IG_2ND_28 IG_2ND_29 IG_2ND_30 IG_2ND_31"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+						<from mux_name="IG2_1ST_62 IG2_1ST_63 IG2_1ST_64 IG2_1ST_65"/>
+					</mux>
+					<mux name="IG_3RD_4" to_pin="Ia:4">
+						<from mux_name="IG_2ND_32 IG_2ND_33 IG_2ND_34 IG_2ND_35 IG_2ND_36 IG_2ND_37 IG_2ND_38 IG_2ND_39"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+						<from mux_name="IG2_1ST_66 IG2_1ST_67 IG2_1ST_68 IG2_1ST_69"/>
+					</mux>
+					<mux name="IG_3RD_5" to_pin="Ia:5">
+						<from mux_name="IG_2ND_40 IG_2ND_41 IG_2ND_42 IG_2ND_43 IG_2ND_44 IG_2ND_45 IG_2ND_46 IG_2ND_47"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+						<from mux_name="IG2_1ST_70 IG2_1ST_71 IG2_1ST_72 IG2_1ST_73"/>
+					</mux>
+					<mux name="IG_3RD_6" to_pin="Ib:0">
+						<from mux_name="IG_2ND_48 IG_2ND_49 IG_2ND_0 IG_2ND_1 IG_2ND_2 IG_2ND_3 IG_2ND_4 IG_2ND_5"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+						<from mux_name="IG2_1ST_74 IG2_1ST_75 IG2_1ST_76 IG2_1ST_77"/>
+					</mux>
+					<mux name="IG_3RD_7" to_pin="Ib:1">
+						<from mux_name="IG_2ND_6 IG_2ND_7 IG_2ND_8 IG_2ND_9 IG_2ND_10 IG_2ND_11 IG_2ND_12 IG_2ND_13"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+						<from mux_name="IG2_1ST_78 IG2_1ST_79 IG2_1ST_80 IG2_1ST_81"/>
+					</mux>
+					<mux name="IG_3RD_8" to_pin="Ib:2">
+						<from mux_name="IG_2ND_14 IG_2ND_15 IG_2ND_16 IG_2ND_17 IG_2ND_18 IG_2ND_19 IG_2ND_20 IG_2ND_21"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+						<from mux_name="IG2_1ST_82 IG2_1ST_83 IG2_1ST_84 IG2_1ST_85"/>
+					</mux>
+					<mux name="IG_3RD_9" to_pin="Ib:3">
+						<from mux_name="IG_2ND_22 IG_2ND_23 IG_2ND_24 IG_2ND_25 IG_2ND_26 IG_2ND_27 IG_2ND_28 IG_2ND_29"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+						<from mux_name="IG2_1ST_86 IG2_1ST_87 IG2_1ST_88 IG2_1ST_89"/>
+					</mux>
+					<mux name="IG_3RD_10" to_pin="Ib:4">
+						<from mux_name="IG_2ND_30 IG_2ND_31 IG_2ND_32 IG_2ND_33 IG_2ND_34 IG_2ND_35 IG_2ND_36 IG_2ND_37"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+						<from mux_name="IG2_1ST_90 IG2_1ST_91 IG2_1ST_92 IG2_1ST_93"/>
+					</mux>
+					<mux name="IG_3RD_11" to_pin="Ib:5">
+						<from mux_name="IG_2ND_38 IG_2ND_39 IG_2ND_40 IG_2ND_41 IG_2ND_42 IG_2ND_43 IG_2ND_44 IG_2ND_45"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+						<from mux_name="IG2_1ST_94 IG2_1ST_95 IG2_1ST_96 IG2_1ST_97"/>
+					</mux>
+					<mux name="IG_3RD_12" to_pin="Ic:0">
+						<from mux_name="IG_2ND_46 IG_2ND_47 IG_2ND_48 IG_2ND_49 IG_2ND_0 IG_2ND_1 IG_2ND_2 IG_2ND_3"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+						<from mux_name="IG2_1ST_98 IG2_1ST_99 IG2_1ST_50 IG2_1ST_51"/>
+					</mux>
+					<mux name="IG_3RD_13" to_pin="Ic:1">
+						<from mux_name="IG_2ND_4 IG_2ND_5 IG_2ND_6 IG_2ND_7 IG_2ND_8 IG_2ND_9 IG_2ND_10 IG_2ND_11"/>
+						<from type="pb" name="plb" from_detail="q:4" switchpoint="0"/>
+						<from mux_name="IG2_1ST_52 IG2_1ST_53 IG2_1ST_54 IG2_1ST_55"/>
+					</mux>
+					<mux name="IG_3RD_14" to_pin="Ic:2">
+						<from mux_name="IG_2ND_12 IG_2ND_13 IG_2ND_14 IG_2ND_15 IG_2ND_16 IG_2ND_17 IG_2ND_18 IG_2ND_19"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+						<from mux_name="IG2_1ST_56 IG2_1ST_57 IG2_1ST_58 IG2_1ST_59"/>
+					</mux>
+					<mux name="IG_3RD_15" to_pin="Ic:3">
+						<from mux_name="IG_2ND_20 IG_2ND_21 IG_2ND_22 IG_2ND_23 IG_2ND_24 IG_2ND_25 IG_2ND_26 IG_2ND_27"/>
+						<from type="pb" name="plb" from_detail="q:5" switchpoint="0"/>
+						<from mux_name="IG2_1ST_60 IG2_1ST_61 IG2_1ST_62 IG2_1ST_63"/>
+					</mux>
+					<mux name="IG_3RD_16" to_pin="Ic:4">
+						<from mux_name="IG_2ND_28 IG_2ND_29 IG_2ND_30 IG_2ND_31 IG_2ND_32 IG_2ND_33 IG_2ND_34 IG_2ND_35"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+						<from mux_name="IG2_1ST_64 IG2_1ST_65 IG2_1ST_66 IG2_1ST_67"/>
+					</mux>
+					<mux name="IG_3RD_17" to_pin="Ic:5">
+						<from mux_name="IG_2ND_36 IG_2ND_37 IG_2ND_38 IG_2ND_39 IG_2ND_40 IG_2ND_41 IG_2ND_42 IG_2ND_43"/>
+						<from type="pb" name="plb" from_detail="o:6" switchpoint="0"/>
+						<from mux_name="IG2_1ST_68 IG2_1ST_69 IG2_1ST_70 IG2_1ST_71"/>
+					</mux>
+					<mux name="IG_3RD_18" to_pin="Id:0">
+						<from mux_name="IG_2ND_44 IG_2ND_45 IG_2ND_46 IG_2ND_47 IG_2ND_48 IG_2ND_49 IG_2ND_0 IG_2ND_1"/>
+						<from type="pb" name="plb" from_detail="q:6" switchpoint="0"/>
+						<from mux_name="IG2_1ST_72 IG2_1ST_73 IG2_1ST_74 IG2_1ST_75"/>
+					</mux>
+					<mux name="IG_3RD_19" to_pin="Id:1">
+						<from mux_name="IG_2ND_2 IG_2ND_3 IG_2ND_4 IG_2ND_5 IG_2ND_6 IG_2ND_7 IG_2ND_8 IG_2ND_9"/>
+						<from type="pb" name="plb" from_detail="o:7" switchpoint="0"/>
+						<from mux_name="IG2_1ST_76 IG2_1ST_77 IG2_1ST_78 IG2_1ST_79"/>
+					</mux>
+					<mux name="IG_3RD_20" to_pin="Id:2">
+						<from mux_name="IG_2ND_10 IG_2ND_11 IG_2ND_12 IG_2ND_13 IG_2ND_14 IG_2ND_15 IG_2ND_16 IG_2ND_17"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+						<from mux_name="IG2_1ST_80 IG2_1ST_81 IG2_1ST_82 IG2_1ST_83"/>
+					</mux>
+					<mux name="IG_3RD_21" to_pin="Id:3">
+						<from mux_name="IG_2ND_18 IG_2ND_19 IG_2ND_20 IG_2ND_21 IG_2ND_22 IG_2ND_23 IG_2ND_24 IG_2ND_25"/>
+						<from type="pb" name="plb" from_detail="q:7" switchpoint="0"/>
+						<from mux_name="IG2_1ST_84 IG2_1ST_85 IG2_1ST_86 IG2_1ST_87"/>
+					</mux>
+					<mux name="IG_3RD_22" to_pin="Id:4">
+						<from mux_name="IG_2ND_26 IG_2ND_27 IG_2ND_28 IG_2ND_29 IG_2ND_30 IG_2ND_31 IG_2ND_32 IG_2ND_33"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+						<from mux_name="IG2_1ST_88 IG2_1ST_89 IG2_1ST_90 IG2_1ST_91"/>
+					</mux>
+					<mux name="IG_3RD_23" to_pin="Id:5">
+						<from mux_name="IG_2ND_34 IG_2ND_35 IG_2ND_36 IG_2ND_37 IG_2ND_38 IG_2ND_39 IG_2ND_40 IG_2ND_41"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+						<from mux_name="IG2_1ST_92 IG2_1ST_93 IG2_1ST_94 IG2_1ST_95"/>
+					</mux>
+					<mux name="IG_3RD_24" to_pin="Ie:0">
+						<from mux_name="IG_2ND_42 IG_2ND_43 IG_2ND_44 IG_2ND_45 IG_2ND_46 IG_2ND_47 IG_2ND_48 IG_2ND_49"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+						<from mux_name="IG2_1ST_96 IG2_1ST_97 IG2_1ST_98 IG2_1ST_99"/>
+					</mux>
+					<mux name="IG_3RD_25" to_pin="Ie:1">
+						<from mux_name="IG_2ND_0 IG_2ND_1 IG_2ND_2 IG_2ND_3 IG_2ND_4 IG_2ND_5 IG_2ND_6 IG_2ND_7"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+						<from mux_name="IG2_1ST_50 IG2_1ST_51 IG2_1ST_52 IG2_1ST_53"/>
+					</mux>
+					<mux name="IG_3RD_26" to_pin="Ie:2">
+						<from mux_name="IG_2ND_8 IG_2ND_9 IG_2ND_10 IG_2ND_11 IG_2ND_12 IG_2ND_13 IG_2ND_14 IG_2ND_15"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+						<from mux_name="IG2_1ST_54 IG2_1ST_55 IG2_1ST_56 IG2_1ST_57"/>
+					</mux>
+					<mux name="IG_3RD_27" to_pin="Ie:3">
+						<from mux_name="IG_2ND_16 IG_2ND_17 IG_2ND_18 IG_2ND_19 IG_2ND_20 IG_2ND_21 IG_2ND_22 IG_2ND_23"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+						<from mux_name="IG2_1ST_58 IG2_1ST_59 IG2_1ST_60 IG2_1ST_61"/>
+					</mux>
+					<mux name="IG_3RD_28" to_pin="Ie:4">
+						<from mux_name="IG_2ND_24 IG_2ND_25 IG_2ND_26 IG_2ND_27 IG_2ND_28 IG_2ND_29 IG_2ND_30 IG_2ND_31"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+						<from mux_name="IG2_1ST_62 IG2_1ST_63 IG2_1ST_64 IG2_1ST_65"/>
+					</mux>
+					<mux name="IG_3RD_29" to_pin="Ie:5">
+						<from mux_name="IG_2ND_32 IG_2ND_33 IG_2ND_34 IG_2ND_35 IG_2ND_36 IG_2ND_37 IG_2ND_38 IG_2ND_39"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+						<from mux_name="IG2_1ST_66 IG2_1ST_67 IG2_1ST_68 IG2_1ST_69"/>
+					</mux>
+					<mux name="IG_3RD_30" to_pin="If:0">
+						<from mux_name="IG_2ND_40 IG_2ND_41 IG_2ND_42 IG_2ND_43 IG_2ND_44 IG_2ND_45 IG_2ND_46 IG_2ND_47"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+						<from mux_name="IG2_1ST_70 IG2_1ST_71 IG2_1ST_72 IG2_1ST_73"/>
+					</mux>
+					<mux name="IG_3RD_31" to_pin="If:1">
+						<from mux_name="IG_2ND_48 IG_2ND_49 IG_2ND_0 IG_2ND_1 IG_2ND_2 IG_2ND_3 IG_2ND_4 IG_2ND_5"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+						<from mux_name="IG2_1ST_74 IG2_1ST_75 IG2_1ST_76 IG2_1ST_77"/>
+					</mux>
+					<mux name="IG_3RD_32" to_pin="If:2">
+						<from mux_name="IG_2ND_6 IG_2ND_7 IG_2ND_8 IG_2ND_9 IG_2ND_10 IG_2ND_11 IG_2ND_12 IG_2ND_13"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+						<from mux_name="IG2_1ST_78 IG2_1ST_79 IG2_1ST_80 IG2_1ST_81"/>
+					</mux>
+					<mux name="IG_3RD_33" to_pin="If:3">
+						<from mux_name="IG_2ND_14 IG_2ND_15 IG_2ND_16 IG_2ND_17 IG_2ND_18 IG_2ND_19 IG_2ND_20 IG_2ND_21"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+						<from mux_name="IG2_1ST_82 IG2_1ST_83 IG2_1ST_84 IG2_1ST_85"/>
+					</mux>
+					<mux name="IG_3RD_34" to_pin="If:4">
+						<from mux_name="IG_2ND_22 IG_2ND_23 IG_2ND_24 IG_2ND_25 IG_2ND_26 IG_2ND_27 IG_2ND_28 IG_2ND_29"/>
+						<from type="pb" name="plb" from_detail="q:4" switchpoint="0"/>
+						<from mux_name="IG2_1ST_86 IG2_1ST_87 IG2_1ST_88 IG2_1ST_89"/>
+					</mux>
+					<mux name="IG_3RD_35" to_pin="If:5">
+						<from mux_name="IG_2ND_30 IG_2ND_31 IG_2ND_32 IG_2ND_33 IG_2ND_34 IG_2ND_35 IG_2ND_36 IG_2ND_37"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+						<from mux_name="IG2_1ST_90 IG2_1ST_91 IG2_1ST_92 IG2_1ST_93"/>
+					</mux>
+					<mux name="IG_3RD_36" to_pin="Ig:0">
+						<from mux_name="IG_2ND_38 IG_2ND_39 IG_2ND_40 IG_2ND_41 IG_2ND_42 IG_2ND_43 IG_2ND_44 IG_2ND_45"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+						<from mux_name="IG2_1ST_94 IG2_1ST_95 IG2_1ST_96 IG2_1ST_97"/>
+					</mux>
+					<mux name="IG_3RD_37" to_pin="Ig:1">
+						<from mux_name="IG_2ND_46 IG_2ND_47 IG_2ND_48 IG_2ND_49 IG_2ND_0 IG_2ND_1 IG_2ND_2 IG_2ND_3"/>
+						<from type="pb" name="plb" from_detail="q:5" switchpoint="0"/>
+						<from mux_name="IG2_1ST_98 IG2_1ST_99 IG2_1ST_50 IG2_1ST_51"/>
+					</mux>
+					<mux name="IG_3RD_38" to_pin="Ig:2">
+						<from mux_name="IG_2ND_4 IG_2ND_5 IG_2ND_6 IG_2ND_7 IG_2ND_8 IG_2ND_9 IG_2ND_10 IG_2ND_11"/>
+						<from type="pb" name="plb" from_detail="o:6" switchpoint="0"/>
+						<from mux_name="IG2_1ST_52 IG2_1ST_53 IG2_1ST_54 IG2_1ST_55"/>
+					</mux>
+					<mux name="IG_3RD_39" to_pin="Ig:3">
+						<from mux_name="IG_2ND_12 IG_2ND_13 IG_2ND_14 IG_2ND_15 IG_2ND_16 IG_2ND_17 IG_2ND_18 IG_2ND_19"/>
+						<from type="pb" name="plb" from_detail="q:6" switchpoint="0"/>
+						<from mux_name="IG2_1ST_56 IG2_1ST_57 IG2_1ST_58 IG2_1ST_59"/>
+					</mux>
+					<mux name="IG_3RD_40" to_pin="Ig:4">
+						<from mux_name="IG_2ND_20 IG_2ND_21 IG_2ND_22 IG_2ND_23 IG_2ND_24 IG_2ND_25 IG_2ND_26 IG_2ND_27"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+						<from mux_name="IG2_1ST_60 IG2_1ST_61 IG2_1ST_62 IG2_1ST_63"/>
+					</mux>
+					<mux name="IG_3RD_41" to_pin="Ig:5">
+						<from mux_name="IG_2ND_28 IG_2ND_29 IG_2ND_30 IG_2ND_31 IG_2ND_32 IG_2ND_33 IG_2ND_34 IG_2ND_35"/>
+						<from type="pb" name="plb" from_detail="o:7" switchpoint="0"/>
+						<from mux_name="IG2_1ST_64 IG2_1ST_65 IG2_1ST_66 IG2_1ST_67"/>
+					</mux>
+					<mux name="IG_3RD_42" to_pin="Ih:0">
+						<from mux_name="IG_2ND_36 IG_2ND_37 IG_2ND_38 IG_2ND_39 IG_2ND_40 IG_2ND_41 IG_2ND_42 IG_2ND_43"/>
+						<from type="pb" name="plb" from_detail="q:7" switchpoint="0"/>
+						<from mux_name="IG2_1ST_68 IG2_1ST_69 IG2_1ST_70 IG2_1ST_71"/>
+					</mux>
+					<mux name="IG_3RD_43" to_pin="Ih:1">
+						<from mux_name="IG_2ND_44 IG_2ND_45 IG_2ND_46 IG_2ND_47 IG_2ND_48 IG_2ND_49 IG_2ND_0 IG_2ND_1"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+						<from mux_name="IG2_1ST_72 IG2_1ST_73 IG2_1ST_74 IG2_1ST_75"/>
+					</mux>
+					<mux name="IG_3RD_44" to_pin="Ih:2">
+						<from mux_name="IG_2ND_2 IG_2ND_3 IG_2ND_4 IG_2ND_5 IG_2ND_6 IG_2ND_7 IG_2ND_8 IG_2ND_9"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+						<from mux_name="IG2_1ST_76 IG2_1ST_77 IG2_1ST_78 IG2_1ST_79"/>
+					</mux>
+					<mux name="IG_3RD_45" to_pin="Ih:3">
+						<from mux_name="IG_2ND_10 IG_2ND_11 IG_2ND_12 IG_2ND_13 IG_2ND_14 IG_2ND_15 IG_2ND_16 IG_2ND_17"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+						<from mux_name="IG2_1ST_80 IG2_1ST_81 IG2_1ST_82 IG2_1ST_83"/>
+					</mux>
+					<mux name="IG_3RD_46" to_pin="Ih:4">
+						<from mux_name="IG_2ND_18 IG_2ND_19 IG_2ND_20 IG_2ND_21 IG_2ND_22 IG_2ND_23 IG_2ND_24 IG_2ND_25"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+						<from mux_name="IG2_1ST_84 IG2_1ST_85 IG2_1ST_86 IG2_1ST_87"/>
+					</mux>
+					<mux name="IG_3RD_47" to_pin="Ih:5">
+						<from mux_name="IG_2ND_26 IG_2ND_27 IG_2ND_28 IG_2ND_29 IG_2ND_30 IG_2ND_31 IG_2ND_32 IG_2ND_33"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+						<from mux_name="IG2_1ST_88 IG2_1ST_89 IG2_1ST_90 IG2_1ST_91"/>
+					</mux>
+				</second_stage>
+			</multistage_muxs>
+		</imux>
+		<gsb gsb_seg_group="1" name="gsb" pbtype_name="plb memory io mult_36">
+			<seg_group name="l4" track_nums="20">
+				<from name="l1" num_foreach="1" total_froms="8" type="seg"/>
+				<from name="l5" total_froms="4" type="seg"/>
+				<from name="oxbar" num_foreach="4" total_froms="16" type="omux"/>
+				<from name="plb" num_foreach="4" pin_types="o q" total_froms="16" type="pb"/>
+				<from name="l8" num_foreach="1" reuse="0" total_froms="2" type="seg"/>
+				<from name="l12" num_foreach="1" reuse="0" total_froms="1" type="seg"/>
+			</seg_group>
+			<multistage_muxs>
+				<first_stage switch_name="gsb_medium_mux">
+					<mux name="mux-0">
+						<from type="seg" name="l4" from_detail="W0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-1">
+						<from type="seg" name="l4" from_detail="E0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-2">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N3" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-3">
+						<from type="seg" name="l4" from_detail="S0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S3" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-4">
+						<from type="seg" name="l4" from_detail="W4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-5">
+						<from type="seg" name="l4" from_detail="E4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-6">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N7" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-7">
+						<from type="seg" name="l4" from_detail="S4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S7" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-8">
+						<from type="seg" name="l4" from_detail="W8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-9">
+						<from type="seg" name="l4" from_detail="E8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-10">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N11" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-11">
+						<from type="seg" name="l4" from_detail="S8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S11" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-12">
+						<from type="seg" name="l4" from_detail="W12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-13">
+						<from type="seg" name="l4" from_detail="E12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-14">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N15" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-15">
+						<from type="seg" name="l4" from_detail="S12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S15" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-16">
+						<from type="seg" name="l4" from_detail="W16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-17">
+						<from type="seg" name="l4" from_detail="E16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-18">
+						<from type="seg" name="l4" from_detail="N16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N19" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-19">
+						<from type="seg" name="l4" from_detail="S16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S19" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-20">
+						<from type="seg" name="l4" from_detail="W0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-21">
+						<from type="seg" name="l4" from_detail="E0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-22">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N3" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-23">
+						<from type="seg" name="l4" from_detail="S0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S3" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-24">
+						<from type="seg" name="l4" from_detail="W4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-25">
+						<from type="seg" name="l4" from_detail="E4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-26">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N7" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-27">
+						<from type="seg" name="l4" from_detail="S4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S7" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-28">
+						<from type="seg" name="l4" from_detail="W8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-29">
+						<from type="seg" name="l4" from_detail="E8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-30">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N11" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-31">
+						<from type="seg" name="l4" from_detail="S8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S11" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-32">
+						<from type="seg" name="l4" from_detail="W12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-33">
+						<from type="seg" name="l4" from_detail="E12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-34">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N15" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-35">
+						<from type="seg" name="l4" from_detail="S12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S15" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-36">
+						<from type="seg" name="l4" from_detail="W16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-37">
+						<from type="seg" name="l4" from_detail="E16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-38">
+						<from type="seg" name="l4" from_detail="N16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N19" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-39">
+						<from type="seg" name="l4" from_detail="S16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S19" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-40">
+						<from type="seg" name="l4" from_detail="W0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-41">
+						<from type="seg" name="l4" from_detail="E0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-42">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N3" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-43">
+						<from type="seg" name="l4" from_detail="S0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S3" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-44">
+						<from type="seg" name="l4" from_detail="W4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-45">
+						<from type="seg" name="l4" from_detail="E4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-46">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N7" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-47">
+						<from type="seg" name="l4" from_detail="S4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S7" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-48">
+						<from type="seg" name="l4" from_detail="W8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-49">
+						<from type="seg" name="l4" from_detail="E8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-50">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N11" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-51">
+						<from type="seg" name="l4" from_detail="S8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S11" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-52">
+						<from type="seg" name="l4" from_detail="W12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-53">
+						<from type="seg" name="l4" from_detail="E12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-54">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N15" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-55">
+						<from type="seg" name="l4" from_detail="S12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S15" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-56">
+						<from type="seg" name="l4" from_detail="W16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-57">
+						<from type="seg" name="l4" from_detail="E16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-58">
+						<from type="seg" name="l4" from_detail="N16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N19" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-59">
+						<from type="seg" name="l4" from_detail="S16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S19" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-60">
+						<from type="seg" name="l4" from_detail="W0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-61">
+						<from type="seg" name="l4" from_detail="E0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-62">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N3" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-63">
+						<from type="seg" name="l4" from_detail="S0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S3" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-64">
+						<from type="seg" name="l4" from_detail="W4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-65">
+						<from type="seg" name="l4" from_detail="E4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-66">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N7" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-67">
+						<from type="seg" name="l4" from_detail="S4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S7" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-68">
+						<from type="seg" name="l4" from_detail="W8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-69">
+						<from type="seg" name="l4" from_detail="E8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-70">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N11" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-71">
+						<from type="seg" name="l4" from_detail="S8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S11" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-72">
+						<from type="seg" name="l4" from_detail="W12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-73">
+						<from type="seg" name="l4" from_detail="E12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-74">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N15" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-75">
+						<from type="seg" name="l4" from_detail="S12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S15" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-76">
+						<from type="seg" name="l4" from_detail="W16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-77">
+						<from type="seg" name="l4" from_detail="E16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-78">
+						<from type="seg" name="l4" from_detail="N16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N19" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-79">
+						<from type="seg" name="l4" from_detail="S16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S19" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-80">
+						<from type="seg" name="l4" from_detail="W0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-81">
+						<from type="seg" name="l4" from_detail="E0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-82">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N3" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-83">
+						<from type="seg" name="l4" from_detail="S0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S3" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-84">
+						<from type="seg" name="l4" from_detail="W4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-85">
+						<from type="seg" name="l4" from_detail="E4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-86">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N7" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-87">
+						<from type="seg" name="l4" from_detail="S4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S7" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-88">
+						<from type="seg" name="l4" from_detail="W8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-89">
+						<from type="seg" name="l4" from_detail="E8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-90">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N11" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-91">
+						<from type="seg" name="l4" from_detail="S8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S11" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:6" switchpoint="0"/>
+					</mux>
+					<mux name="mux-92">
+						<from type="seg" name="l4" from_detail="W12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-93">
+						<from type="seg" name="l4" from_detail="E12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-94">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N15" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-95">
+						<from type="seg" name="l4" from_detail="S12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S15" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:7" switchpoint="0"/>
+					</mux>
+					<mux name="mux-96">
+						<from type="seg" name="l4" from_detail="W16" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W18" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-97">
+						<from type="seg" name="l4" from_detail="E16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-98">
+						<from type="seg" name="l4" from_detail="N16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N19" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-99">
+						<from type="seg" name="l4" from_detail="S16" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S17" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S18" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S19" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:0" switchpoint="0"/>
+					</mux>
+					<mux name="mux-100">
+						<from type="seg" name="l4" from_detail="W0" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W1" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W2" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W3" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-101">
+						<from type="seg" name="l4" from_detail="E0" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E1" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E2" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E3" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-102">
+						<from type="seg" name="l4" from_detail="N0" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N1" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N2" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="N3" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="q:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-103">
+						<from type="seg" name="l4" from_detail="S0" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S1" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S2" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="S3" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:1" switchpoint="0"/>
+					</mux>
+					<mux name="mux-104">
+						<from type="seg" name="l4" from_detail="W4" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W5" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W6" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="W7" switchpoint="2"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-105">
+						<from type="seg" name="l4" from_detail="E4" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E5" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E6" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="E7" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-106">
+						<from type="seg" name="l4" from_detail="N4" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N5" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N6" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="N7" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="q:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-107">
+						<from type="seg" name="l4" from_detail="S4" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S5" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S6" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="S7" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:2" switchpoint="0"/>
+					</mux>
+					<mux name="mux-108">
+						<from type="seg" name="l4" from_detail="W8" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W9" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W10" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="W11" switchpoint="3"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-109">
+						<from type="seg" name="l4" from_detail="E8" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E9" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E10" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="E11" switchpoint="0"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-110">
+						<from type="seg" name="l4" from_detail="N8" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N9" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N10" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="N11" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="q:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-111">
+						<from type="seg" name="l4" from_detail="S8" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S9" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S10" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="S11" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:3" switchpoint="0"/>
+					</mux>
+					<mux name="mux-112">
+						<from type="seg" name="l4" from_detail="W12" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W13" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W14" switchpoint="0"/>
+						<from type="seg" name="l4" from_detail="W15" switchpoint="0"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-113">
+						<from type="seg" name="l4" from_detail="E12" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E13" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E14" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="E15" switchpoint="1"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-114">
+						<from type="seg" name="l4" from_detail="N12" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N13" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N14" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="N15" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="q:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-115">
+						<from type="seg" name="l4" from_detail="S12" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S13" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S14" switchpoint="3"/>
+						<from type="seg" name="l4" from_detail="S15" switchpoint="3"/>
+						<from type="pb" name="plb" from_detail="o:4" switchpoint="0"/>
+					</mux>
+					<mux name="mux-116">
+						<from type="seg" name="l4" from_detail="W16" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W17" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W18" switchpoint="1"/>
+						<from type="seg" name="l4" from_detail="W19" switchpoint="1"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="mux-117">
+						<from type="seg" name="l4" from_detail="E16" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E17" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E18" switchpoint="2"/>
+						<from type="seg" name="l4" from_detail="E19" switchpoint="2"/>
+						<from type="pb" name="plb" from_detail="o:5" switchpoint="0"/>
+					</mux>
+				</first_stage>
+				<second_stage switch_name="gsb_medium_mux">
+					<mux name="W-b0" to_seg_name="l4" to_track="W0">
+						<from mux_name="mux-0 mux-1 mux-2 mux-3"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b0" to_seg_name="l4" to_track="E0">
+						<from mux_name="mux-0 mux-1 mux-2 mux-3"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b0" to_seg_name="l4" to_track="N0">
+						<from mux_name="mux-0 mux-1 mux-2 mux-3"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b0" to_seg_name="l4" to_track="S0">
+						<from mux_name="mux-0 mux-1 mux-2 mux-3"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b1" to_seg_name="l4" to_track="W1">
+						<from mux_name="mux-4 mux-5 mux-6 mux-7"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b1" to_seg_name="l4" to_track="E1">
+						<from mux_name="mux-4 mux-5 mux-6 mux-7"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b1" to_seg_name="l4" to_track="N1">
+						<from mux_name="mux-4 mux-5 mux-6 mux-7"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b1" to_seg_name="l4" to_track="S1">
+						<from mux_name="mux-4 mux-5 mux-6 mux-7"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="W-b2" to_seg_name="l4" to_track="W2">
+						<from mux_name="mux-8 mux-9 mux-10 mux-11"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b2" to_seg_name="l4" to_track="E2">
+						<from mux_name="mux-8 mux-9 mux-10 mux-11"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b2" to_seg_name="l4" to_track="N2">
+						<from mux_name="mux-8 mux-9 mux-10 mux-11"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b2" to_seg_name="l4" to_track="S2">
+						<from mux_name="mux-8 mux-9 mux-10 mux-11"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b3" to_seg_name="l4" to_track="W3">
+						<from mux_name="mux-12 mux-13 mux-14 mux-15"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b3" to_seg_name="l4" to_track="E3">
+						<from mux_name="mux-12 mux-13 mux-14 mux-15"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b3" to_seg_name="l4" to_track="N3">
+						<from mux_name="mux-12 mux-13 mux-14 mux-15"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b3" to_seg_name="l4" to_track="S3">
+						<from mux_name="mux-12 mux-13 mux-14 mux-15"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="W-b4" to_seg_name="l4" to_track="W4">
+						<from mux_name="mux-16 mux-17 mux-18 mux-19"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b4" to_seg_name="l4" to_track="E4">
+						<from mux_name="mux-16 mux-17 mux-18 mux-19"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b4" to_seg_name="l4" to_track="N4">
+						<from mux_name="mux-16 mux-17 mux-18 mux-19"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b4" to_seg_name="l4" to_track="S4">
+						<from mux_name="mux-16 mux-17 mux-18 mux-19"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b5" to_seg_name="l4" to_track="W5">
+						<from mux_name="mux-20 mux-21 mux-22 mux-23"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b5" to_seg_name="l4" to_track="E5">
+						<from mux_name="mux-20 mux-21 mux-22 mux-23"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b5" to_seg_name="l4" to_track="N5">
+						<from mux_name="mux-20 mux-21 mux-22 mux-23"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b5" to_seg_name="l4" to_track="S5">
+						<from mux_name="mux-20 mux-21 mux-22 mux-23"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="W-b6" to_seg_name="l4" to_track="W6">
+						<from mux_name="mux-24 mux-25 mux-26 mux-27"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b6" to_seg_name="l4" to_track="E6">
+						<from mux_name="mux-24 mux-25 mux-26 mux-27"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b6" to_seg_name="l4" to_track="N6">
+						<from mux_name="mux-24 mux-25 mux-26 mux-27"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b6" to_seg_name="l4" to_track="S6">
+						<from mux_name="mux-24 mux-25 mux-26 mux-27"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b7" to_seg_name="l4" to_track="W7">
+						<from mux_name="mux-28 mux-29 mux-30 mux-31"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b7" to_seg_name="l4" to_track="E7">
+						<from mux_name="mux-28 mux-29 mux-30 mux-31"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b7" to_seg_name="l4" to_track="N7">
+						<from mux_name="mux-28 mux-29 mux-30 mux-31"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b7" to_seg_name="l4" to_track="S7">
+						<from mux_name="mux-28 mux-29 mux-30 mux-31"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="W-b8" to_seg_name="l4" to_track="W8">
+						<from mux_name="mux-32 mux-33 mux-34 mux-35"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b8" to_seg_name="l4" to_track="E8">
+						<from mux_name="mux-32 mux-33 mux-34 mux-35"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b8" to_seg_name="l4" to_track="N8">
+						<from mux_name="mux-32 mux-33 mux-34 mux-35"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b8" to_seg_name="l4" to_track="S8">
+						<from mux_name="mux-32 mux-33 mux-34 mux-35"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b9" to_seg_name="l4" to_track="W9">
+						<from mux_name="mux-36 mux-37 mux-38 mux-39"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b9" to_seg_name="l4" to_track="E9">
+						<from mux_name="mux-36 mux-37 mux-38 mux-39"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b9" to_seg_name="l4" to_track="N9">
+						<from mux_name="mux-36 mux-37 mux-38 mux-39"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b9" to_seg_name="l4" to_track="S9">
+						<from mux_name="mux-36 mux-37 mux-38 mux-39"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="W-b10" to_seg_name="l4" to_track="W10">
+						<from mux_name="mux-40 mux-41 mux-42 mux-43"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b10" to_seg_name="l4" to_track="E10">
+						<from mux_name="mux-40 mux-41 mux-42 mux-43"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b10" to_seg_name="l4" to_track="N10">
+						<from mux_name="mux-40 mux-41 mux-42 mux-43"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b10" to_seg_name="l4" to_track="S10">
+						<from mux_name="mux-40 mux-41 mux-42 mux-43"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b11" to_seg_name="l4" to_track="W11">
+						<from mux_name="mux-44 mux-45 mux-46 mux-47"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b11" to_seg_name="l4" to_track="E11">
+						<from mux_name="mux-44 mux-45 mux-46 mux-47"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b11" to_seg_name="l4" to_track="N11">
+						<from mux_name="mux-44 mux-45 mux-46 mux-47"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b11" to_seg_name="l4" to_track="S11">
+						<from mux_name="mux-44 mux-45 mux-46 mux-47"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="W-b12" to_seg_name="l4" to_track="W12">
+						<from mux_name="mux-48 mux-49 mux-50 mux-51"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b12" to_seg_name="l4" to_track="E12">
+						<from mux_name="mux-48 mux-49 mux-50 mux-51"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b12" to_seg_name="l4" to_track="N12">
+						<from mux_name="mux-48 mux-49 mux-50 mux-51"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b12" to_seg_name="l4" to_track="S12">
+						<from mux_name="mux-48 mux-49 mux-50 mux-51"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b13" to_seg_name="l4" to_track="W13">
+						<from mux_name="mux-52 mux-53 mux-54 mux-55"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b13" to_seg_name="l4" to_track="E13">
+						<from mux_name="mux-52 mux-53 mux-54 mux-55"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b13" to_seg_name="l4" to_track="N13">
+						<from mux_name="mux-52 mux-53 mux-54 mux-55"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b13" to_seg_name="l4" to_track="S13">
+						<from mux_name="mux-52 mux-53 mux-54 mux-55"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="W-b14" to_seg_name="l4" to_track="W14">
+						<from mux_name="mux-56 mux-57 mux-58 mux-59"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b14" to_seg_name="l4" to_track="E14">
+						<from mux_name="mux-56 mux-57 mux-58 mux-59"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b14" to_seg_name="l4" to_track="N14">
+						<from mux_name="mux-56 mux-57 mux-58 mux-59"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b14" to_seg_name="l4" to_track="S14">
+						<from mux_name="mux-56 mux-57 mux-58 mux-59"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b15" to_seg_name="l4" to_track="W15">
+						<from mux_name="mux-60 mux-61 mux-62 mux-63"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b15" to_seg_name="l4" to_track="E15">
+						<from mux_name="mux-60 mux-61 mux-62 mux-63"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b15" to_seg_name="l4" to_track="N15">
+						<from mux_name="mux-60 mux-61 mux-62 mux-63"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b15" to_seg_name="l4" to_track="S15">
+						<from mux_name="mux-60 mux-61 mux-62 mux-63"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="W-b16" to_seg_name="l4" to_track="W16">
+						<from mux_name="mux-64 mux-65 mux-66 mux-67"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b16" to_seg_name="l4" to_track="E16">
+						<from mux_name="mux-64 mux-65 mux-66 mux-67"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b16" to_seg_name="l4" to_track="N16">
+						<from mux_name="mux-64 mux-65 mux-66 mux-67"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b16" to_seg_name="l4" to_track="S16">
+						<from mux_name="mux-64 mux-65 mux-66 mux-67"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b17" to_seg_name="l4" to_track="W17">
+						<from mux_name="mux-68 mux-69 mux-70 mux-71"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b17" to_seg_name="l4" to_track="E17">
+						<from mux_name="mux-68 mux-69 mux-70 mux-71"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b17" to_seg_name="l4" to_track="N17">
+						<from mux_name="mux-68 mux-69 mux-70 mux-71"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b17" to_seg_name="l4" to_track="S17">
+						<from mux_name="mux-68 mux-69 mux-70 mux-71"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+					<mux name="W-b18" to_seg_name="l4" to_track="W18">
+						<from mux_name="mux-72 mux-73 mux-74 mux-75"/>
+						<from type="omux" name="oxbar" from_detail="1" switchpoint="0"/>
+					</mux>
+					<mux name="E-b18" to_seg_name="l4" to_track="E18">
+						<from mux_name="mux-72 mux-73 mux-74 mux-75"/>
+						<from type="omux" name="oxbar" from_detail="2" switchpoint="0"/>
+					</mux>
+					<mux name="N-b18" to_seg_name="l4" to_track="N18">
+						<from mux_name="mux-72 mux-73 mux-74 mux-75"/>
+						<from type="omux" name="oxbar" from_detail="3" switchpoint="0"/>
+					</mux>
+					<mux name="S-b18" to_seg_name="l4" to_track="S18">
+						<from mux_name="mux-72 mux-73 mux-74 mux-75"/>
+						<from type="omux" name="oxbar" from_detail="4" switchpoint="0"/>
+					</mux>
+					<mux name="W-b19" to_seg_name="l4" to_track="W19">
+						<from mux_name="mux-76 mux-77 mux-78 mux-79"/>
+						<from type="omux" name="oxbar" from_detail="5" switchpoint="0"/>
+					</mux>
+					<mux name="E-b19" to_seg_name="l4" to_track="E19">
+						<from mux_name="mux-76 mux-77 mux-78 mux-79"/>
+						<from type="omux" name="oxbar" from_detail="6" switchpoint="0"/>
+					</mux>
+					<mux name="N-b19" to_seg_name="l4" to_track="N19">
+						<from mux_name="mux-76 mux-77 mux-78 mux-79"/>
+						<from type="omux" name="oxbar" from_detail="7" switchpoint="0"/>
+					</mux>
+					<mux name="S-b19" to_seg_name="l4" to_track="S19">
+						<from mux_name="mux-76 mux-77 mux-78 mux-79"/>
+						<from type="omux" name="oxbar" from_detail="0" switchpoint="0"/>
+					</mux>
+				</second_stage>
+			</multistage_muxs>
+		</gsb>
+	</gsb_arch>
+	<complexblocklist>
+		<pb_type name="plb" area="53894">
+			<input name="Ia" num_pins="6" equivalent="none"/>
+			<input name="Ib" num_pins="6" equivalent="none"/>
+			<input name="Ic" num_pins="6" equivalent="none"/>
+			<input name="Id" num_pins="6" equivalent="none"/>
+			<input name="Ie" num_pins="6" equivalent="none"/>
+			<input name="If" num_pins="6" equivalent="none"/>
+			<input name="Ig" num_pins="6" equivalent="none"/>
+			<input name="Ih" num_pins="6" equivalent="none"/>
+			<output name="o" num_pins="8" equivalent="none"/>
+			<output name="q" num_pins="8" equivalent="none"/>
+			<output name="mux_o" num_pins="8" equivalent="none"/>
+			<clock name="clk" num_pins="1"/>
+			<pb_type name="fle" num_pb="8">
+				<input name="in" num_pins="8"/>
+				<output name="out" num_pins="3"/>
+				<clock name="clk" num_pins="1"/>
+				<mode name="n1_lut6">
+					<pb_type name="ble" num_pb="1">
+						<input name="in" num_pins="8"/>
+						<output name="out" num_pins="3"/>
+						<clock name="clk" num_pins="1"/>
+						<pb_type name="lut_6" blif_model=".names" num_pb="1" class="lut">
+							<input name="in" num_pins="6" port_class="lut_in"/>
+							<output name="out" num_pins="1" port_class="lut_out"/>
+							<delay_matrix type="max" in_port="lut_6.in" out_port="lut_6.out">
+                0
+                0
+                0
+                0
+                0
+                0
+                
+              </delay_matrix>
+						</pb_type>
+						<pb_type name="ff" blif_model=".latch" num_pb="1" class="flipflop">
+							<input name="D" num_pins="1" port_class="D"/>
+							<output name="Q" num_pins="1" port_class="Q"/>
+							<clock name="clk" num_pins="1" port_class="clock"/>
+							<T_setup value="78.5e-12" port="ff.D" clock="clk"/>
+							<T_clock_to_Q max="395.8e-12" port="ff.Q" clock="clk"/>
+						</pb_type>
+						<pb_type name="mm" blif_model=".subckt mux" num_pb="1">
+							<input name="a" num_pins="1"/>
+							<input name="b" num_pins="1"/>
+							<input name="sel" num_pins="1"/>
+							<output name="out" num_pins="1"/>
+							<delay_constant max="139.5e-12" in_port="mm.a" out_port="mm.out"/>
+							<delay_constant max="139.5e-12" in_port="mm.b" out_port="mm.out"/>
+						</pb_type>
+						<interconnect>
+							<direct name="direcrs1" input="lut_6.out" output="ff.D">
+								<pack_pattern name="ble6" in_port="lut_6.out" out_port="ff.D"/>
+							</direct>
+							<direct name="direcrs2" input="ble.in[5:0]" output="lut_6.in"/>
+							<direct name="direcrs3" input="ble.clk" output="ff.clk"/>
+							<direct name="direcrs4" input="lut_6.out" output="ble.out[1:1]"/>
+							<direct name="direcrs5" input="ff.Q" output="ble.out[0:0]"/>
+							<direct name="direcrs6" input="ble.in[6:6]" output="mm.a"/>
+							<direct name="direcrs7" input="ble.in[7:7]" output="mm.b"/>
+							<direct name="direcrs8" input="lut_6.out" output="mm.sel"/>
+							<direct name="direcrs9" input="mm.out" output="ble.out[2:2]"/>
+						</interconnect>
+					</pb_type>
+					<interconnect>
+						<direct name="direct1" input="fle.in" output="ble.in"/>
+						<direct name="direct2" input="ble.out" output="fle.out"/>
+						<direct name="direct3" input="fle.clk" output="ble.clk"/>
+					</interconnect>
+				</mode>
+			</pb_type>
+			<interconnect>
+				<complete name="crossbar" input="plb.Ia plb.Ib plb.Ic plb.Id plb.Ie plb.If plb.Ig plb.Ih fle[7:0].out" output="fle[7:0].in">
+					<delay_constant max="0" in_port="plb.Ia plb.Ib plb.Ic plb.Id plb.Ie plb.If plb.Ig plb.Ih" out_port="fle[7:0].in"/>
+					<delay_constant max="0" in_port="fle[7:0].out" out_port="fle[7:0].in"/>
+				</complete>
+				<complete name="clks" input="plb.clk" output="fle[7:0].clk"/>
+				<direct name="plbouts1" input="fle[7:0].out[0:0]" output="plb.o"/>
+				<direct name="plbouts2" input="fle[7:0].out[1:1]" output="plb.q"/>
+				<direct name="plbouts3" input="fle[7:0].out[2:2]" output="plb.mux_o"/>
+			</interconnect>
+			<fc in_type="frac" in_val="0 0 0 0" out_type="frac" out_val="0 0 0 0"/>
+			<pinlocations pattern="spread"/>
+		</pb_type>
+		<pb_type name="io" capacity="6" area="0">
+			<input name="outpad" num_pins="1"/>
+			<output name="inpad" num_pins="1"/>
+			<clock name="clock" num_pins="1"/>
+			<mode name="inpad">
+				<pb_type name="inpad" blif_model=".input" num_pb="1">
+					<output name="inpad" num_pins="1"/>
+				</pb_type>
+				<interconnect>
+					<direct name="inpad" input="inpad.inpad" output="io.inpad">
+						<delay_constant max="5.006e-11" in_port="inpad.inpad" out_port="io.inpad"/>
+					</direct>
+				</interconnect>
+			</mode>
+			<mode name="outpad">
+				<pb_type name="outpad" blif_model=".output" num_pb="1">
+					<input name="outpad" num_pins="1"/>
+				</pb_type>
+				<interconnect>
+					<direct name="outpad" input="io.outpad" output="outpad.outpad">
+						<delay_constant max="1.645e-11" in_port="io.outpad" out_port="outpad.outpad"/>
+					</direct>
+				</interconnect>
+			</mode>
+			<fc in_type="frac" in_val="0.5 0 0 0" out_type="frac" out_val="0.5 0 0 0"/>
+			<pinlocations pattern="custom">
+				<loc side="left">io.outpad io.inpad io.clock</loc>
+				<loc side="top">io.outpad io.inpad io.clock</loc>
+				<loc side="right">io.outpad io.inpad io.clock</loc>
+				<loc side="bottom">io.outpad io.inpad io.clock</loc>
+			</pinlocations>
+			<power method="ignore"/>
+		</pb_type>
+		<pb_type name="mult_36" height="4" area="396000">
+			<input name="a" num_pins="93"/>
+			<input name="b" num_pins="93"/>
+			<output name="out" num_pins="72"/>
+			<mode name="two_divisible_mult_18x18">
+				<pb_type name="divisible_mult_18x18" num_pb="2">
+					<input name="a" num_pins="18"/>
+					<input name="b" num_pins="18"/>
+					<output name="out" num_pins="36"/>
+					<mode name="two_mult_9x9">
+						<pb_type name="mult_9x9_slice" num_pb="2">
+							<input name="A_cfg" num_pins="9"/>
+							<input name="B_cfg" num_pins="9"/>
+							<output name="OUT_cfg" num_pins="18"/>
+							<pb_type name="mult_9x9" blif_model=".subckt multiply" num_pb="1">
+								<input name="a" num_pins="9"/>
+								<input name="b" num_pins="9"/>
+								<output name="out" num_pins="18"/>
+								<delay_constant max="1.797e-9" in_port="mult_9x9.a" out_port="mult_9x9.out"/>
+								<delay_constant max="1.797e-9" in_port="mult_9x9.b" out_port="mult_9x9.out"/>
+							</pb_type>
+							<interconnect>
+								<direct name="a2a" input="mult_9x9_slice.A_cfg" output="mult_9x9.a"/>
+								<direct name="b2b" input="mult_9x9_slice.B_cfg" output="mult_9x9.b"/>
+								<direct name="out2out" input="mult_9x9.out" output="mult_9x9_slice.OUT_cfg"/>
+							</interconnect>
+							<power method="pin-toggle">
+								<port name="A_cfg" energy_per_toggle="1.45e-12"/>
+								<port name="B_cfg" energy_per_toggle="1.45e-12"/>
+								<static_power power_per_instance="0.0"/>
+							</power>
+						</pb_type>
+						<interconnect>
+							<direct name="a2a" input="divisible_mult_18x18.a" output="mult_9x9_slice[1:0].A_cfg"/>
+							<direct name="b2b" input="divisible_mult_18x18.b" output="mult_9x9_slice[1:0].B_cfg"/>
+							<direct name="out2out" input="mult_9x9_slice[1:0].OUT_cfg" output="divisible_mult_18x18.out"/>
+						</interconnect>
+					</mode>
+					<mode name="mult_18x18">
+						<pb_type name="mult_18x18_slice" num_pb="1">
+							<input name="A_cfg" num_pins="18"/>
+							<input name="B_cfg" num_pins="18"/>
+							<output name="OUT_cfg" num_pins="36"/>
+							<pb_type name="mult_18x18" blif_model=".subckt multiply" num_pb="1">
+								<input name="a" num_pins="18"/>
+								<input name="b" num_pins="18"/>
+								<output name="out" num_pins="36"/>
+								<delay_constant max="1.797e-9" in_port="mult_18x18.a" out_port="mult_18x18.out"/>
+								<delay_constant max="1.797e-9" in_port="mult_18x18.b" out_port="mult_18x18.out"/>
+							</pb_type>
+							<interconnect>
+								<direct name="a2a" input="mult_18x18_slice.A_cfg" output="mult_18x18.a"/>
+								<direct name="b2b" input="mult_18x18_slice.B_cfg" output="mult_18x18.b"/>
+								<direct name="out2out" input="mult_18x18.out" output="mult_18x18_slice.OUT_cfg"/>
+							</interconnect>
+							<power method="pin-toggle">
+								<port name="A_cfg" energy_per_toggle="1.09e-12"/>
+								<port name="B_cfg" energy_per_toggle="1.09e-12"/>
+								<static_power power_per_instance="0.0"/>
+							</power>
+						</pb_type>
+						<interconnect>
+							<direct name="a2a" input="divisible_mult_18x18.a" output="mult_18x18_slice.A_cfg"/>
+							<direct name="b2b" input="divisible_mult_18x18.b" output="mult_18x18_slice.B_cfg"/>
+							<direct name="out2out" input="mult_18x18_slice.OUT_cfg" output="divisible_mult_18x18.out"/>
+						</interconnect>
+					</mode>
+					<power method="sum-of-children"/>
+				</pb_type>
+				<interconnect>
+					<direct name="a2a" input="mult_36.a[35:0]" output="divisible_mult_18x18[1:0].a">
+						<delay_constant max="158e-12" in_port="mult_36.a[35:0]" out_port="divisible_mult_18x18[1:0].a"/>
+					</direct>
+					<direct name="b2b" input="mult_36.b[35:0]" output="divisible_mult_18x18[1:0].b">
+						<delay_constant max="158e-12" in_port="mult_36.b[35:0]" out_port="divisible_mult_18x18[1:0].b"/>
+					</direct>
+					<direct name="out2out" input="divisible_mult_18x18[1:0].out" output="mult_36.out">
+						<delay_constant max="1.28e-9" in_port="divisible_mult_18x18[1:0].out" out_port="mult_36.out"/>
+					</direct>
+				</interconnect>
+			</mode>
+			<mode name="mult_36x36">
+				<pb_type name="mult_36x36_slice" num_pb="1">
+					<input name="A_cfg" num_pins="36"/>
+					<input name="B_cfg" num_pins="36"/>
+					<output name="OUT_cfg" num_pins="72"/>
+					<pb_type name="mult_36x36" blif_model=".subckt multiply" num_pb="1">
+						<input name="a" num_pins="36"/>
+						<input name="b" num_pins="36"/>
+						<output name="out" num_pins="72"/>
+						<delay_constant max="1.797e-9" in_port="mult_36x36.a" out_port="mult_36x36.out"/>
+						<delay_constant max="1.797e-9" in_port="mult_36x36.b" out_port="mult_36x36.out"/>
+					</pb_type>
+					<interconnect>
+						<direct name="a2a" input="mult_36x36_slice.A_cfg" output="mult_36x36.a"/>
+						<direct name="b2b" input="mult_36x36_slice.B_cfg" output="mult_36x36.b"/>
+						<direct name="out2out" input="mult_36x36.out" output="mult_36x36_slice.OUT_cfg"/>
+					</interconnect>
+					<power method="pin-toggle">
+						<port name="A_cfg" energy_per_toggle="2.13e-12"/>
+						<port name="B_cfg" energy_per_toggle="2.13e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="a2a" input="mult_36.a[35:0]" output="mult_36x36_slice.A_cfg">
+						<delay_constant max="158e-12" in_port="mult_36.a[35:0]" out_port="mult_36x36_slice.A_cfg"/>
+					</direct>
+					<direct name="b2b" input="mult_36.b[35:0]" output="mult_36x36_slice.B_cfg">
+						<delay_constant max="158e-12" in_port="mult_36.b[35:0]" out_port="mult_36x36_slice.B_cfg"/>
+					</direct>
+					<direct name="out2out" input="mult_36x36_slice.OUT_cfg" output="mult_36.out">
+						<delay_constant max="2.28e-9" in_port="mult_36x36_slice.OUT_cfg" out_port="mult_36.out"/>
+					</direct>
+				</interconnect>
+			</mode>
+			<fc in_type="frac" in_val="0 0 0 0" out_type="frac" out_val="0 0 0 0"/>
+			<pinlocations pattern="spread"/>
+			<power method="sum-of-children"/>
+		</pb_type>
+		<pb_type name="memory" height="6" area="548000">
+			<input name="addr1" num_pins="15"/>
+			<input name="addr2" num_pins="15"/>
+			<input name="data" num_pins="64"/>
+			<input name="we1" num_pins="1"/>
+			<input name="we2" num_pins="1"/>
+			<output name="out" num_pins="64"/>
+			<clock name="clk" num_pins="1"/>
+			<mode name="mem_512x64_sp">
+				<pb_type name="mem_512x64_sp" blif_model=".subckt single_port_ram" class="memory" num_pb="1">
+					<input name="addr" num_pins="9" port_class="address"/>
+					<input name="data" num_pins="64" port_class="data_in"/>
+					<input name="we" num_pins="1" port_class="write_en"/>
+					<output name="out" num_pins="64" port_class="data_out"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_512x64_sp.addr" clock="clk"/>
+					<T_setup value="509e-12" port="mem_512x64_sp.data" clock="clk"/>
+					<T_setup value="509e-12" port="mem_512x64_sp.we" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_512x64_sp.out" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="9.0e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[8:0]" output="mem_512x64_sp.addr">
+						<delay_constant max="132e-12" in_port="memory.addr1[8:0]" out_port="mem_512x64_sp.addr"/>
+					</direct>
+					<direct name="data1" input="memory.data[63:0]" output="mem_512x64_sp.data">
+						<delay_constant max="132e-12" in_port="memory.data[63:0]" out_port="mem_512x64_sp.data"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_512x64_sp.we">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_512x64_sp.we"/>
+					</direct>
+					<direct name="dataout1" input="mem_512x64_sp.out" output="memory.out[63:0]">
+						<delay_constant max="40e-12" in_port="mem_512x64_sp.out" out_port="memory.out[63:0]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_512x64_sp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_1024x32_sp">
+				<pb_type name="mem_1024x32_sp" blif_model=".subckt single_port_ram" class="memory" num_pb="1">
+					<input name="addr" num_pins="10" port_class="address"/>
+					<input name="data" num_pins="32" port_class="data_in"/>
+					<input name="we" num_pins="1" port_class="write_en"/>
+					<output name="out" num_pins="32" port_class="data_out"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_1024x32_sp.addr" clock="clk"/>
+					<T_setup value="509e-12" port="mem_1024x32_sp.data" clock="clk"/>
+					<T_setup value="509e-12" port="mem_1024x32_sp.we" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_1024x32_sp.out" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="9.0e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[9:0]" output="mem_1024x32_sp.addr">
+						<delay_constant max="132e-12" in_port="memory.addr1[9:0]" out_port="mem_1024x32_sp.addr"/>
+					</direct>
+					<direct name="data1" input="memory.data[31:0]" output="mem_1024x32_sp.data">
+						<delay_constant max="132e-12" in_port="memory.data[31:0]" out_port="mem_1024x32_sp.data"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_1024x32_sp.we">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_1024x32_sp.we"/>
+					</direct>
+					<direct name="dataout1" input="mem_1024x32_sp.out" output="memory.out[31:0]">
+						<delay_constant max="40e-12" in_port="mem_1024x32_sp.out" out_port="memory.out[31:0]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_1024x32_sp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_2048x16_sp">
+				<pb_type name="mem_2048x16_sp" blif_model=".subckt single_port_ram" class="memory" num_pb="1">
+					<input name="addr" num_pins="11" port_class="address"/>
+					<input name="data" num_pins="16" port_class="data_in"/>
+					<input name="we" num_pins="1" port_class="write_en"/>
+					<output name="out" num_pins="16" port_class="data_out"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_2048x16_sp.addr" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x16_sp.data" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x16_sp.we" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_2048x16_sp.out" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="9.0e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[10:0]" output="mem_2048x16_sp.addr">
+						<delay_constant max="132e-12" in_port="memory.addr1[10:0]" out_port="mem_2048x16_sp.addr"/>
+					</direct>
+					<direct name="data1" input="memory.data[15:0]" output="mem_2048x16_sp.data">
+						<delay_constant max="132e-12" in_port="memory.data[15:0]" out_port="mem_2048x16_sp.data"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_2048x16_sp.we">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_2048x16_sp.we"/>
+					</direct>
+					<direct name="dataout1" input="mem_2048x16_sp.out" output="memory.out[15:0]">
+						<delay_constant max="40e-12" in_port="mem_2048x16_sp.out" out_port="memory.out[15:0]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_2048x16_sp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_4096x8_sp">
+				<pb_type name="mem_4096x8_sp" blif_model=".subckt single_port_ram" class="memory" num_pb="1">
+					<input name="addr" num_pins="12" port_class="address"/>
+					<input name="data" num_pins="8" port_class="data_in"/>
+					<input name="we" num_pins="1" port_class="write_en"/>
+					<output name="out" num_pins="8" port_class="data_out"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_4096x8_sp.addr" clock="clk"/>
+					<T_setup value="509e-12" port="mem_4096x8_sp.data" clock="clk"/>
+					<T_setup value="509e-12" port="mem_4096x8_sp.we" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_4096x8_sp.out" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="9.0e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[11:0]" output="mem_4096x8_sp.addr">
+						<delay_constant max="132e-12" in_port="memory.addr1[11:0]" out_port="mem_4096x8_sp.addr"/>
+					</direct>
+					<direct name="data1" input="memory.data[7:0]" output="mem_4096x8_sp.data">
+						<delay_constant max="132e-12" in_port="memory.data[7:0]" out_port="mem_4096x8_sp.data"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_4096x8_sp.we">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_4096x8_sp.we"/>
+					</direct>
+					<direct name="dataout1" input="mem_4096x8_sp.out" output="memory.out[7:0]">
+						<delay_constant max="40e-12" in_port="mem_4096x8_sp.out" out_port="memory.out[7:0]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_4096x8_sp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_8192x4_sp">
+				<pb_type name="mem_8192x4_sp" blif_model=".subckt single_port_ram" class="memory" num_pb="1">
+					<input name="addr" num_pins="13" port_class="address"/>
+					<input name="data" num_pins="4" port_class="data_in"/>
+					<input name="we" num_pins="1" port_class="write_en"/>
+					<output name="out" num_pins="4" port_class="data_out"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_8192x4_sp.addr" clock="clk"/>
+					<T_setup value="509e-12" port="mem_8192x4_sp.data" clock="clk"/>
+					<T_setup value="509e-12" port="mem_8192x4_sp.we" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_8192x4_sp.out" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="9.0e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[12:0]" output="mem_8192x4_sp.addr">
+						<delay_constant max="132e-12" in_port="memory.addr1[12:0]" out_port="mem_8192x4_sp.addr"/>
+					</direct>
+					<direct name="data1" input="memory.data[3:0]" output="mem_8192x4_sp.data">
+						<delay_constant max="132e-12" in_port="memory.data[3:0]" out_port="mem_8192x4_sp.data"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_8192x4_sp.we">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_8192x4_sp.we"/>
+					</direct>
+					<direct name="dataout1" input="mem_8192x4_sp.out" output="memory.out[3:0]">
+						<delay_constant max="40e-12" in_port="mem_8192x4_sp.out" out_port="memory.out[3:0]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_8192x4_sp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_16384x2_sp">
+				<pb_type name="mem_16384x2_sp" blif_model=".subckt single_port_ram" class="memory" num_pb="1">
+					<input name="addr" num_pins="14" port_class="address"/>
+					<input name="data" num_pins="2" port_class="data_in"/>
+					<input name="we" num_pins="1" port_class="write_en"/>
+					<output name="out" num_pins="2" port_class="data_out"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_16384x2_sp.addr" clock="clk"/>
+					<T_setup value="509e-12" port="mem_16384x2_sp.data" clock="clk"/>
+					<T_setup value="509e-12" port="mem_16384x2_sp.we" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_16384x2_sp.out" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="9.0e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[13:0]" output="mem_16384x2_sp.addr">
+						<delay_constant max="132e-12" in_port="memory.addr1[13:0]" out_port="mem_16384x2_sp.addr"/>
+					</direct>
+					<direct name="data1" input="memory.data[1:0]" output="mem_16384x2_sp.data">
+						<delay_constant max="132e-12" in_port="memory.data[1:0]" out_port="mem_16384x2_sp.data"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_16384x2_sp.we">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_16384x2_sp.we"/>
+					</direct>
+					<direct name="dataout1" input="mem_16384x2_sp.out" output="memory.out[1:0]">
+						<delay_constant max="40e-12" in_port="mem_16384x2_sp.out" out_port="memory.out[1:0]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_16384x2_sp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_32768x1_sp">
+				<pb_type name="mem_32768x1_sp" blif_model=".subckt single_port_ram" class="memory" num_pb="1">
+					<input name="addr" num_pins="15" port_class="address"/>
+					<input name="data" num_pins="1" port_class="data_in"/>
+					<input name="we" num_pins="1" port_class="write_en"/>
+					<output name="out" num_pins="1" port_class="data_out"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_32768x1_sp.addr" clock="clk"/>
+					<T_setup value="509e-12" port="mem_32768x1_sp.data" clock="clk"/>
+					<T_setup value="509e-12" port="mem_32768x1_sp.we" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_32768x1_sp.out" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="9.0e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[14:0]" output="mem_32768x1_sp.addr">
+						<delay_constant max="132e-12" in_port="memory.addr1[14:0]" out_port="mem_32768x1_sp.addr"/>
+					</direct>
+					<direct name="data1" input="memory.data[0:0]" output="mem_32768x1_sp.data">
+						<delay_constant max="132e-12" in_port="memory.data[0:0]" out_port="mem_32768x1_sp.data"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_32768x1_sp.we">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_32768x1_sp.we"/>
+					</direct>
+					<direct name="dataout1" input="mem_32768x1_sp.out" output="memory.out[0:0]">
+						<delay_constant max="40e-12" in_port="mem_32768x1_sp.out" out_port="memory.out[0:0]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_32768x1_sp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_1024x32_dp">
+				<pb_type name="mem_1024x32_dp" blif_model=".subckt dual_port_ram" class="memory" num_pb="1">
+					<input name="addr1" num_pins="10" port_class="address1"/>
+					<input name="addr2" num_pins="10" port_class="address2"/>
+					<input name="data1" num_pins="32" port_class="data_in1"/>
+					<input name="data2" num_pins="32" port_class="data_in2"/>
+					<input name="we1" num_pins="1" port_class="write_en1"/>
+					<input name="we2" num_pins="1" port_class="write_en2"/>
+					<output name="out1" num_pins="32" port_class="data_out1"/>
+					<output name="out2" num_pins="32" port_class="data_out2"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_1024x32_dp.addr1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_1024x32_dp.data1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_1024x32_dp.we1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_1024x32_dp.addr2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_1024x32_dp.data2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_1024x32_dp.we2" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_1024x32_dp.out1" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_1024x32_dp.out2" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="17.9e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[9:0]" output="mem_1024x32_dp.addr1">
+						<delay_constant max="132e-12" in_port="memory.addr1[9:0]" out_port="mem_1024x32_dp.addr1"/>
+					</direct>
+					<direct name="address2" input="memory.addr2[9:0]" output="mem_1024x32_dp.addr2">
+						<delay_constant max="132e-12" in_port="memory.addr2[9:0]" out_port="mem_1024x32_dp.addr2"/>
+					</direct>
+					<direct name="data1" input="memory.data[31:0]" output="mem_1024x32_dp.data1">
+						<delay_constant max="132e-12" in_port="memory.data[31:0]" out_port="mem_1024x32_dp.data1"/>
+					</direct>
+					<direct name="data2" input="memory.data[63:32]" output="mem_1024x32_dp.data2">
+						<delay_constant max="132e-12" in_port="memory.data[63:32]" out_port="mem_1024x32_dp.data2"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_1024x32_dp.we1">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_1024x32_dp.we1"/>
+					</direct>
+					<direct name="writeen2" input="memory.we2" output="mem_1024x32_dp.we2">
+						<delay_constant max="132e-12" in_port="memory.we2" out_port="mem_1024x32_dp.we2"/>
+					</direct>
+					<direct name="dataout1" input="mem_1024x32_dp.out1" output="memory.out[31:0]">
+						<delay_constant max="40e-12" in_port="mem_1024x32_dp.out1" out_port="memory.out[31:0]"/>
+					</direct>
+					<direct name="dataout2" input="mem_1024x32_dp.out2" output="memory.out[63:32]">
+						<delay_constant max="40e-12" in_port="mem_1024x32_dp.out2" out_port="memory.out[63:32]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_1024x32_dp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_2048x16_dp">
+				<pb_type name="mem_2048x16_dp" blif_model=".subckt dual_port_ram" class="memory" num_pb="1">
+					<input name="addr1" num_pins="11" port_class="address1"/>
+					<input name="addr2" num_pins="11" port_class="address2"/>
+					<input name="data1" num_pins="16" port_class="data_in1"/>
+					<input name="data2" num_pins="16" port_class="data_in2"/>
+					<input name="we1" num_pins="1" port_class="write_en1"/>
+					<input name="we2" num_pins="1" port_class="write_en2"/>
+					<output name="out1" num_pins="16" port_class="data_out1"/>
+					<output name="out2" num_pins="16" port_class="data_out2"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_2048x16_dp.addr1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x16_dp.data1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x16_dp.we1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x16_dp.addr2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x16_dp.data2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x16_dp.we2" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_2048x16_dp.out1" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_2048x16_dp.out2" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="17.9e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[10:0]" output="mem_2048x16_dp.addr1">
+						<delay_constant max="132e-12" in_port="memory.addr1[10:0]" out_port="mem_2048x16_dp.addr1"/>
+					</direct>
+					<direct name="address2" input="memory.addr2[10:0]" output="mem_2048x16_dp.addr2">
+						<delay_constant max="132e-12" in_port="memory.addr2[10:0]" out_port="mem_2048x16_dp.addr2"/>
+					</direct>
+					<direct name="data1" input="memory.data[15:0]" output="mem_2048x16_dp.data1">
+						<delay_constant max="132e-12" in_port="memory.data[15:0]" out_port="mem_2048x16_dp.data1"/>
+					</direct>
+					<direct name="data2" input="memory.data[31:16]" output="mem_2048x16_dp.data2">
+						<delay_constant max="132e-12" in_port="memory.data[31:16]" out_port="mem_2048x16_dp.data2"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_2048x16_dp.we1">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_2048x16_dp.we1"/>
+					</direct>
+					<direct name="writeen2" input="memory.we2" output="mem_2048x16_dp.we2">
+						<delay_constant max="132e-12" in_port="memory.we2" out_port="mem_2048x16_dp.we2"/>
+					</direct>
+					<direct name="dataout1" input="mem_2048x16_dp.out1" output="memory.out[15:0]">
+						<delay_constant max="40e-12" in_port="mem_2048x16_dp.out1" out_port="memory.out[15:0]"/>
+					</direct>
+					<direct name="dataout2" input="mem_2048x16_dp.out2" output="memory.out[31:16]">
+						<delay_constant max="40e-12" in_port="mem_2048x16_dp.out2" out_port="memory.out[31:16]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_2048x16_dp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_2048x8_dp">
+				<pb_type name="mem_2048x8_dp" blif_model=".subckt dual_port_ram" class="memory" num_pb="1">
+					<input name="addr1" num_pins="12" port_class="address1"/>
+					<input name="addr2" num_pins="12" port_class="address2"/>
+					<input name="data1" num_pins="8" port_class="data_in1"/>
+					<input name="data2" num_pins="8" port_class="data_in2"/>
+					<input name="we1" num_pins="1" port_class="write_en1"/>
+					<input name="we2" num_pins="1" port_class="write_en2"/>
+					<output name="out1" num_pins="8" port_class="data_out1"/>
+					<output name="out2" num_pins="8" port_class="data_out2"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_2048x8_dp.addr1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x8_dp.data1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x8_dp.we1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x8_dp.addr2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x8_dp.data2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_2048x8_dp.we2" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_2048x8_dp.out1" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_2048x8_dp.out2" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="17.9e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[11:0]" output="mem_2048x8_dp.addr1">
+						<delay_constant max="132e-12" in_port="memory.addr1[11:0]" out_port="mem_2048x8_dp.addr1"/>
+					</direct>
+					<direct name="address2" input="memory.addr2[11:0]" output="mem_2048x8_dp.addr2">
+						<delay_constant max="132e-12" in_port="memory.addr2[11:0]" out_port="mem_2048x8_dp.addr2"/>
+					</direct>
+					<direct name="data1" input="memory.data[7:0]" output="mem_2048x8_dp.data1">
+						<delay_constant max="132e-12" in_port="memory.data[7:0]" out_port="mem_2048x8_dp.data1"/>
+					</direct>
+					<direct name="data2" input="memory.data[15:8]" output="mem_2048x8_dp.data2">
+						<delay_constant max="132e-12" in_port="memory.data[15:8]" out_port="mem_2048x8_dp.data2"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_2048x8_dp.we1">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_2048x8_dp.we1"/>
+					</direct>
+					<direct name="writeen2" input="memory.we2" output="mem_2048x8_dp.we2">
+						<delay_constant max="132e-12" in_port="memory.we2" out_port="mem_2048x8_dp.we2"/>
+					</direct>
+					<direct name="dataout1" input="mem_2048x8_dp.out1" output="memory.out[7:0]">
+						<delay_constant max="40e-12" in_port="mem_2048x8_dp.out1" out_port="memory.out[7:0]"/>
+					</direct>
+					<direct name="dataout2" input="mem_2048x8_dp.out2" output="memory.out[15:8]">
+						<delay_constant max="40e-12" in_port="mem_2048x8_dp.out2" out_port="memory.out[15:8]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_2048x8_dp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_8192x4_dp">
+				<pb_type name="mem_8192x4_dp" blif_model=".subckt dual_port_ram" class="memory" num_pb="1">
+					<input name="addr1" num_pins="13" port_class="address1"/>
+					<input name="addr2" num_pins="13" port_class="address2"/>
+					<input name="data1" num_pins="4" port_class="data_in1"/>
+					<input name="data2" num_pins="4" port_class="data_in2"/>
+					<input name="we1" num_pins="1" port_class="write_en1"/>
+					<input name="we2" num_pins="1" port_class="write_en2"/>
+					<output name="out1" num_pins="4" port_class="data_out1"/>
+					<output name="out2" num_pins="4" port_class="data_out2"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_8192x4_dp.addr1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_8192x4_dp.data1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_8192x4_dp.we1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_8192x4_dp.addr2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_8192x4_dp.data2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_8192x4_dp.we2" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_8192x4_dp.out1" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_8192x4_dp.out2" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="17.9e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[12:0]" output="mem_8192x4_dp.addr1">
+						<delay_constant max="132e-12" in_port="memory.addr1[12:0]" out_port="mem_8192x4_dp.addr1"/>
+					</direct>
+					<direct name="address2" input="memory.addr2[12:0]" output="mem_8192x4_dp.addr2">
+						<delay_constant max="132e-12" in_port="memory.addr2[12:0]" out_port="mem_8192x4_dp.addr2"/>
+					</direct>
+					<direct name="data1" input="memory.data[3:0]" output="mem_8192x4_dp.data1">
+						<delay_constant max="132e-12" in_port="memory.data[3:0]" out_port="mem_8192x4_dp.data1"/>
+					</direct>
+					<direct name="data2" input="memory.data[7:4]" output="mem_8192x4_dp.data2">
+						<delay_constant max="132e-12" in_port="memory.data[7:4]" out_port="mem_8192x4_dp.data2"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_8192x4_dp.we1">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_8192x4_dp.we1"/>
+					</direct>
+					<direct name="writeen2" input="memory.we2" output="mem_8192x4_dp.we2">
+						<delay_constant max="132e-12" in_port="memory.we2" out_port="mem_8192x4_dp.we2"/>
+					</direct>
+					<direct name="dataout1" input="mem_8192x4_dp.out1" output="memory.out[3:0]">
+						<delay_constant max="40e-12" in_port="mem_8192x4_dp.out1" out_port="memory.out[3:0]"/>
+					</direct>
+					<direct name="dataout2" input="mem_8192x4_dp.out2" output="memory.out[7:4]">
+						<delay_constant max="40e-12" in_port="mem_8192x4_dp.out2" out_port="memory.out[7:4]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_8192x4_dp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_16384x2_dp">
+				<pb_type name="mem_16384x2_dp" blif_model=".subckt dual_port_ram" class="memory" num_pb="1">
+					<input name="addr1" num_pins="14" port_class="address1"/>
+					<input name="addr2" num_pins="14" port_class="address2"/>
+					<input name="data1" num_pins="2" port_class="data_in1"/>
+					<input name="data2" num_pins="2" port_class="data_in2"/>
+					<input name="we1" num_pins="1" port_class="write_en1"/>
+					<input name="we2" num_pins="1" port_class="write_en2"/>
+					<output name="out1" num_pins="2" port_class="data_out1"/>
+					<output name="out2" num_pins="2" port_class="data_out2"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_16384x2_dp.addr1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_16384x2_dp.data1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_16384x2_dp.we1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_16384x2_dp.addr2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_16384x2_dp.data2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_16384x2_dp.we2" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_16384x2_dp.out1" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_16384x2_dp.out2" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="17.9e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[13:0]" output="mem_16384x2_dp.addr1">
+						<delay_constant max="132e-12" in_port="memory.addr1[13:0]" out_port="mem_16384x2_dp.addr1"/>
+					</direct>
+					<direct name="address2" input="memory.addr2[13:0]" output="mem_16384x2_dp.addr2">
+						<delay_constant max="132e-12" in_port="memory.addr2[13:0]" out_port="mem_16384x2_dp.addr2"/>
+					</direct>
+					<direct name="data1" input="memory.data[1:0]" output="mem_16384x2_dp.data1">
+						<delay_constant max="132e-12" in_port="memory.data[1:0]" out_port="mem_16384x2_dp.data1"/>
+					</direct>
+					<direct name="data2" input="memory.data[3:2]" output="mem_16384x2_dp.data2">
+						<delay_constant max="132e-12" in_port="memory.data[3:2]" out_port="mem_16384x2_dp.data2"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_16384x2_dp.we1">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_16384x2_dp.we1"/>
+					</direct>
+					<direct name="writeen2" input="memory.we2" output="mem_16384x2_dp.we2">
+						<delay_constant max="132e-12" in_port="memory.we2" out_port="mem_16384x2_dp.we2"/>
+					</direct>
+					<direct name="dataout1" input="mem_16384x2_dp.out1" output="memory.out[1:0]">
+						<delay_constant max="40e-12" in_port="mem_16384x2_dp.out1" out_port="memory.out[1:0]"/>
+					</direct>
+					<direct name="dataout2" input="mem_16384x2_dp.out2" output="memory.out[3:2]">
+						<delay_constant max="40e-12" in_port="mem_16384x2_dp.out2" out_port="memory.out[3:2]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_16384x2_dp.clk"/>
+				</interconnect>
+			</mode>
+			<mode name="mem_32768x1_dp">
+				<pb_type name="mem_32768x1_dp" blif_model=".subckt dual_port_ram" class="memory" num_pb="1">
+					<input name="addr1" num_pins="15" port_class="address1"/>
+					<input name="addr2" num_pins="15" port_class="address2"/>
+					<input name="data1" num_pins="1" port_class="data_in1"/>
+					<input name="data2" num_pins="1" port_class="data_in2"/>
+					<input name="we1" num_pins="1" port_class="write_en1"/>
+					<input name="we2" num_pins="1" port_class="write_en2"/>
+					<output name="out1" num_pins="1" port_class="data_out1"/>
+					<output name="out2" num_pins="1" port_class="data_out2"/>
+					<clock name="clk" num_pins="1" port_class="clock"/>
+					<T_setup value="509e-12" port="mem_32768x1_dp.addr1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_32768x1_dp.data1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_32768x1_dp.we1" clock="clk"/>
+					<T_setup value="509e-12" port="mem_32768x1_dp.addr2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_32768x1_dp.data2" clock="clk"/>
+					<T_setup value="509e-12" port="mem_32768x1_dp.we2" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_32768x1_dp.out1" clock="clk"/>
+					<T_clock_to_Q max="1.234e-9" port="mem_32768x1_dp.out2" clock="clk"/>
+					<power method="pin-toggle">
+						<port name="clk" energy_per_toggle="17.9e-12"/>
+						<static_power power_per_instance="0.0"/>
+					</power>
+				</pb_type>
+				<interconnect>
+					<direct name="address1" input="memory.addr1[14:0]" output="mem_32768x1_dp.addr1">
+						<delay_constant max="132e-12" in_port="memory.addr1[14:0]" out_port="mem_32768x1_dp.addr1"/>
+					</direct>
+					<direct name="address2" input="memory.addr2[14:0]" output="mem_32768x1_dp.addr2">
+						<delay_constant max="132e-12" in_port="memory.addr2[14:0]" out_port="mem_32768x1_dp.addr2"/>
+					</direct>
+					<direct name="data1" input="memory.data[0:0]" output="mem_32768x1_dp.data1">
+						<delay_constant max="132e-12" in_port="memory.data[0:0]" out_port="mem_32768x1_dp.data1"/>
+					</direct>
+					<direct name="data2" input="memory.data[1:1]" output="mem_32768x1_dp.data2">
+						<delay_constant max="132e-12" in_port="memory.data[1:1]" out_port="mem_32768x1_dp.data2"/>
+					</direct>
+					<direct name="writeen1" input="memory.we1" output="mem_32768x1_dp.we1">
+						<delay_constant max="132e-12" in_port="memory.we1" out_port="mem_32768x1_dp.we1"/>
+					</direct>
+					<direct name="writeen2" input="memory.we2" output="mem_32768x1_dp.we2">
+						<delay_constant max="132e-12" in_port="memory.we2" out_port="mem_32768x1_dp.we2"/>
+					</direct>
+					<direct name="dataout1" input="mem_32768x1_dp.out1" output="memory.out[0:0]">
+						<delay_constant max="40e-12" in_port="mem_32768x1_dp.out1" out_port="memory.out[0:0]"/>
+					</direct>
+					<direct name="dataout2" input="mem_32768x1_dp.out2" output="memory.out[1:1]">
+						<delay_constant max="40e-12" in_port="mem_32768x1_dp.out2" out_port="memory.out[1:1]"/>
+					</direct>
+					<direct name="clk" input="memory.clk" output="mem_32768x1_dp.clk"/>
+				</interconnect>
+			</mode>
+			<fc in_type="frac" in_val="0.05 0.05 0.05 0.05" out_type="frac" out_val="0.08 0.08 0.08 0.08"/>
+			<pinlocations pattern="spread"/>
+			<power method="sum-of-children"/>
+		</pb_type>
+	</complexblocklist>
+	<power>
+		<local_interconnect C_wire="2.5e-10"/>
+		<mux_transistor_size mux_transistor_size="3"/>
+		<FF_size FF_size="4"/>
+		<LUT_transistor_size LUT_transistor_size="4"/>
+	</power>
+	<clocks>
+		<clock buffer_size="auto" C_wire="2.5e-10"/>
+	</clocks>
+</architecture>
